@@ -28,6 +28,12 @@ class AdminController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
+                        'controllers' => ['questions'],
+                        'actions' => ['view'],
+                        'allow' => true,
+                        'roles' => ['?']
+                    ],
+                    [
                         'actions' => [$this->action->id],
                         'allow' => true,
                         'roles' => ['@']

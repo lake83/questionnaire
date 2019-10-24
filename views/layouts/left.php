@@ -11,7 +11,9 @@ app\assets\AdminAsset::register($this);
     'options' => ['class' => 'sidebar-menu', 'data-widget' => 'tree'],
     'encodeLabels' => false,
     'items' => [
-        ['label' => 'Пользователи', 'url' => ['users/index'], 'icon' => 'users']
+        ['label' => 'Пользователи', 'url' => ['users/index'], 'icon' => 'users'],
+        ['label' => 'Опросы', 'url' => ['questionnaires/index'], 'icon' => 'list-alt'],
+        ['label' => 'Результаты', 'url' => ['resultes/index'], 'icon' => 'file']
     ]
 ]);	
 ?>

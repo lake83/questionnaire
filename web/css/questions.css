@@ -1,0 +1,123 @@
+@font-face {
+  font-family: 'Gilroy';
+  src: url('../fonts/Gilroy-Regular.ttf');
+}
+.main-wrapper {
+    font-family: 'Gilroy';
+    font-size: 15px;
+}
+.no-padding {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+.q_title {
+    color: #dc2d3e;
+    font-weight: bold;
+}
+.q_title img {
+    width: 25px;
+    margin-right: 15px;
+    position: relative;
+    top: -1px;
+}
+.q_buttons {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.q_buttons .progress {
+    height: 6px;
+    margin: 10px 0;
+}
+.q_buttons .progress-bar {
+    background-color: #dc2d3e;
+}
+.person_img {
+    display: block;
+    width: 60px;
+    height: 60px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    float: left;
+    margin-right: 10px;
+    border-radius: 15px;
+}
+.main-col {
+    height: 100%;
+}
+.main-col .btn-light {
+    border-radius: 15px;
+    margin: 0 15px;
+    background-image: url('/images/angle.png');
+    background-repeat: no-repeat;
+    background-size: 17%;
+    background-position: center;
+    padding: 25px;
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+.main-col .btn-danger {
+    background-color: #dc2c3e;
+    border-radius: 15px;
+    padding: 15px 50px 15px 15px;
+}
+.main-col .btn-danger span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 3px 0 0 15px;
+    background-image: url('/images/angle.png');
+    background-repeat: no-repeat;
+    background-size: 40%;
+    background-position: center;
+    position: absolute;
+}
+.second-col {
+    padding-top: 20px;
+    height: 100%;
+}
+small {
+    color: #dc2d3e;
+    padding-top: 5px;
+    display: block;
+}
+.second-col .clearfix {
+    padding-bottom: 20px;
+}
+.second-col .description {
+    background-color: #f7f7f7;
+    width: 100%;
+    display: block;
+    border-radius: 15px;
+    padding: 15px;
+    font-size: 12px;
+}
+.second-col .discount {
+    background-color: #fbe408;
+    width: 100%;
+    height: 140px;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    border-radius: 15px;
+    padding: 15px;   
+}
+.second-col .discount img {
+    margin-top: -50px;
+}
+.second-col .discount .discount_info {
+    position: absolute;
+    width: 20px;
+    left: 140px;
+    top: 60px;
+}
+.second-col .discount strong {
+    font-size: 24px;
+}
