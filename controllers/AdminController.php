@@ -73,6 +73,11 @@ class AdminController extends Controller
                 'class' => $actionPath . 'Delete',
                 'model' => $this->modelClass
             ],
+            'toggle' => [
+                'class' => \pheme\grid\actions\ToggleAction::className(),
+                'modelClass' => $this->modelClass,
+                'attribute' => 'is_active'
+            ],
             'error' => [
                 'class' => 'yii\web\ErrorAction'
             ]

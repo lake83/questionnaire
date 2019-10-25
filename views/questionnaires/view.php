@@ -40,7 +40,7 @@ app\assets\QuestionnaireAsset::register($this);
             <img src="/images/wallet.png" /><br />
             <img class="discount_info" src="/images/info.png" title="<?= $model->discount_info ?>" />
             Ваша скидка
-            <strong><?= $model->discount_type == $model::DISCOUNT_PROCENT ? $formatter->asPercent($model->discount_value, 2) :
+            <strong><?= $model->discount_type == $model::DISCOUNT_PROCENT ? $model->discount_value . ' %' :
                 $formatter->asCurrency($model->discount_value, 'RUR', [\NumberFormatter::MAX_FRACTION_DIGITS => 0]); ?>
             </strong>
         </div>

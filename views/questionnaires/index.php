@@ -29,7 +29,7 @@ $this->registerJsFile('/js/questionnaires.js', ['depends' => 'yii\web\JqueryAsse
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '{update} {delete} {view} {questions}',
+                'template' => '{questions} {view} {update} {delete}',
                 'buttons' => [
                     'view' => function ($url, $model, $key){
                         return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', ['view', 'id' => $model->id], [
@@ -39,7 +39,7 @@ $this->registerJsFile('/js/questionnaires.js', ['depends' => 'yii\web\JqueryAsse
                         ]);
                     },
                     'questions' => function ($url, $model, $key){
-                        return Html::a('<span class="glyphicon glyphicon-question-sign"></span>', ['questions/index', 'id' => $model->id], [
+                        return Html::a('<span class="glyphicon glyphicon-question-sign"></span>', ['questions/index', 'questionnaire_id' => $model->id], [
                             'title' => 'Вопросы',
                             'data-pjax' => 0
                         ]);

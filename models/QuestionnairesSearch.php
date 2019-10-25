@@ -44,7 +44,7 @@ class QuestionnairesSearch extends Questionnaires
         $query = Questionnaires::find();
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $query,
+            'query' => $query
         ]);
         $this->load($params);
 

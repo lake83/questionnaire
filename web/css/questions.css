@@ -119,5 +119,6 @@ small {
     top: 60px;
 }
 .second-col .discount strong {
+    display: block;
     font-size: 24px;
 }
