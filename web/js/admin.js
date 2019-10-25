@@ -64,3 +64,10 @@ if ($('input[id$="created_at"]').length) {
         $('input[id$="created_at"]').datepicker($.extend({}, $.datepicker.regional['ru'], {"dateFormat":"dd.mm.yy"}));
     });
 }
+
+// Show info modal on content page
+$('#blocks-info-btn').click(function() {
+    $('#modal').modal('show').find('#modalTitle').text($('#blocks-info h2').text());
+    $('#modal').find('.modal-body').html($('#blocks-info div').html());
+    return false;
+});

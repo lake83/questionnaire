@@ -13,7 +13,31 @@ $this->title = 'Опросы';
 $this->registerJsFile('/js/questionnaires.js', ['depends' => 'yii\web\JqueryAsset']);
 ?>
 
-<p><?= Html::a('Создать опрос', ['create'], ['class' => 'btn btn-success']) ?></p>
+<p>
+    <?= Html::a('Создать опрос', ['create'], ['class' => 'btn btn-success']) ?>
+    <?= Html::a('<i class="fa fa-info-circle"></i>', ['#'], ['id' => 'blocks-info-btn', 'class' => 'btn btn-info pull-right']) ?>
+</p>
+<div id="blocks-info" class="hidden">
+   <h2>Установка</h2>
+   <div>
+   <textarea readonly="readonly" rows="18" class="form-control">
+Для работы виджета необходимо подключение jQuery.
+После файла jQuery подключается рабочий JS файл.
+       
+Например:
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="http://questions.loc/js/questionnaires.js" type="application/javascript"></script>
+       
+Ссылка для открытия виджета должна содержать элемент data-questionnaire="<id>"
+       
+Например:
+<a href="#" data-questionnaire="1">Опрос</a>
+       
+где <id> - ID опроса в системе.
+   </textarea>
+       
+   </div>
+</div>
 
 <?=  GridView::widget([
     'layout' => '{items}{pager}',
@@ -24,6 +48,10 @@ $this->registerJsFile('/js/questionnaires.js', ['depends' => 'yii\web\JqueryAsse
         'columns' => [
         ['class' => 'yii\grid\SerialColumn'],
 
+            [
+                'attribute' => 'id',
+                'options' => ['width' => '100px']
+            ],
             'title',
             SiteHelper::created_at($searchModel),
 
