@@ -13,7 +13,7 @@ app\assets\AdminAsset::register($this);
     'items' => [
         ['label' => 'Пользователи', 'url' => ['users/index'], 'icon' => 'users'],
         ['label' => 'Опросы', 'url' => ['questionnaires/index'], 'icon' => 'list-alt'],
-        ['label' => 'Результаты', 'url' => ['resultes/index'], 'icon' => 'file']
+        ['label' => 'Результаты', 'url' => ['results/index'], 'icon' => 'file']
     ]
 ]);	
 ?>
