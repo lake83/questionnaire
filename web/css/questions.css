@@ -20,6 +20,13 @@
     position: relative;
     top: -1px;
 }
+.q_content {
+    padding: 20px 0;
+}
+.q_content h3 {
+    font-weight: bold;
+    margin-bottom: 40px;
+}
 .q_buttons {
     position: absolute;
     bottom: 0;
@@ -45,6 +52,19 @@
 }
 .main-col {
     height: 100%;
+}
+.main-col form label {
+    color: #dc2d3e;
+    font-weight: normal;
+}
+.main-col form .checkbox label {
+    color: #aaa;
+    font-size: 14px;
+}
+.main-col form input[type="text"], .main-col form textarea {
+    padding: 22px;
+    border-radius: 12px;
+    font-weight: bold;
 }
 .main-col .btn-light {
     border-radius: 15px;
@@ -97,7 +117,7 @@ small {
     display: block;
     border-radius: 15px;
     padding: 15px;
-    font-size: 12px;
+    font-size: 13px;
 }
 .second-col .discount {
     background-color: #fbe408;
@@ -121,4 +141,46 @@ small {
 .second-col .discount strong {
     display: block;
     font-size: 24px;
+}
+.test_done span {
+    font-size: 24px;
+}
+.test_done h3 {
+    margin-top: 0;
+}
+
+.checkbox label:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+.checkbox .cr {
+  position: relative;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: .25em;
+  width: .8em;
+  height: .8em;
+  float: left;
+  margin-right: .5em;
+  background-color: #ddd;
+}
+.checkbox .cr .cr-icon {
+  position: absolute;
+  font-size: .5em;
+  line-height: 0;
+  top: 50%;
+  left: 15%;
+}
+.checkbox label input[type="checkbox"] {
+  display: none;
+}
+.checkbox label input[type="checkbox"]+.cr>.cr-icon {
+  opacity: 0;
+}
+.checkbox label input[type="checkbox"]:checked+.cr>.cr-icon {
+  opacity: 1;
+}
+.checkbox label input[type="checkbox"]:disabled+.cr {
+  opacity: .5;
 }

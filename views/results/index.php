@@ -18,8 +18,13 @@ echo GridView::widget([
     'filterModel' => $searchModel,
         'columns' => [
         ['class' => 'yii\grid\SerialColumn'],
-
-            'questionnaire_id',
+            
+            [
+                'attribute' => 'questionnaire_id',
+                'value' => function ($model, $index, $widget) {
+                    return $model->questionnaire->title;
+                }
+            ],
             'name',
             'phone',
             SiteHelper::created_at($searchModel),
@@ -31,5 +36,4 @@ echo GridView::widget([
             ]
         ]
     ]);
-
 ?>

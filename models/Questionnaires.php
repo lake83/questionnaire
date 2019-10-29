@@ -100,4 +100,13 @@ class Questionnaires extends \yii\db\ActiveRecord
         ];
         return is_null($key) ? $array : $array[$key];
     }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getQuestions()
+    {
+        return $this->hasMany(Questions::className(), ['questionnaire_id' => 'id'])
+            ->andWhere(['is_active' => 1])->orderBy('position ASC')->asArray();
+    }
 }

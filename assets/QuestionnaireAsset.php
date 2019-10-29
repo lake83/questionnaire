@@ -11,8 +11,11 @@ class QuestionnaireAsset extends AssetBundle
     public $css = [
         'css/questions.css'
     ];
-    public $js = [];
+    public $js = [
+        'js/questions.js'
+    ];
     public $depends = [
+        'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset'
     ];
 }

@@ -40,6 +40,14 @@ class m170301_124905_settings extends Migration
                 'icon' => 'fa-paint-brush',
                 'rules' => 'safe',
                 'hint' => 'Цветовое оформление. Варианты: skin-blue, skin-black, skin-red, skin-yellow, skin-purple, skin-green, skin-blue-light, skin-black-light, skin-red-light, skin-yellow-light, skin-purple-light, skin-green-light'
+            ],
+            [
+                'name' => 'phone_mask',
+                'value' => '+7 (999) 999-99-99',
+                'label' => 'Шаблон телефона',
+                'icon' => 'fa-phone',
+                'rules' => 'safe',
+                'hint' => 'Маска телефона используемая в формах.'
             ]
         ];
         Yii::$app->db->createCommand()->batchInsert('settings', array_keys($settings[0]), $settings)->execute();

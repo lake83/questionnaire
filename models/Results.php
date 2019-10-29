@@ -49,7 +49,8 @@ class Results extends \yii\db\ActiveRecord
             [['questionnaire_id', 'created_at'], 'integer'],
             ['questions', 'string'],
             [['name', 'referrer'], 'string', 'max' => 255],
-            [['phone', 'discount'], 'string', 'max' => 20]
+            [['phone', 'discount'], 'string', 'max' => 20],
+            ['discount', 'default', 'value' => '']
         ];
     }
 
@@ -68,5 +69,13 @@ class Results extends \yii\db\ActiveRecord
             'referrer' => 'Источник',
             'created_at' => 'Создано'
         ];
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getQuestionnaire()
+    {
+        return $this->hasOne(Questionnaires::className(), ['id' => 'questionnaire_id']);
     }
 }
