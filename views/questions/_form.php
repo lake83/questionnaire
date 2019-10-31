@@ -22,7 +22,7 @@ $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
             if (this.value == ' . $model::TYPE_SLIDER .
             ') {$(".slider").show()} else {$(".slider").hide();$("#questions-slider_min, #questions-slider_max, #questions-slider_step").val("")}
             if (this.value == ' . $model::TYPE_OPTIONS . ' || this.value == ' . $model::TYPE_OPTIONS_IMGS .
-            ' || this.value == ' . $model::TYPE_OPTIONS_AND_IMG . ' || this.value == ' . $model::TYPE_DROPDOWN .
+            ' || this.value == ' . $model::TYPE_OPTIONS_AND_IMG .
             ') {$(".several").show()} else {$(".several").hide();$("#questions-is_several").val("0")}'
     ]) ?>
 
@@ -48,7 +48,7 @@ $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
     <?= $form->field($model, 'is_required')->checkbox() ?>
 
     <div class="several"<?= $model->isNewRecord || ($model->type !== $model::TYPE_OPTIONS && $model->type !== $model::TYPE_OPTIONS_IMGS &&
-        $model->type !== $model::TYPE_OPTIONS_AND_IMG && $model->type !== $model::TYPE_DROPDOWN) ? ' style="display:none"' : '' ?>>
+        $model->type !== $model::TYPE_OPTIONS_AND_IMG) ? ' style="display:none"' : '' ?>>
         <?= $form->field($model, 'is_several')->checkbox() ?>
     </div>
 

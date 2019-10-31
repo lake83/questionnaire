@@ -3,6 +3,8 @@
 namespace app\models;
 
 use yii\behaviors\TimestampBehavior;
+use yii\helpers\Json;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "results".
@@ -77,5 +79,20 @@ class Results extends \yii\db\ActiveRecord
     public function getQuestionnaire()
     {
         return $this->hasOne(Questionnaires::className(), ['id' => 'questionnaire_id']);
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    public function afterFind()
+    {
+        $questions = [];
+        $names = ArrayHelper::map($this->questionnaire->questions, 'id', 'name');
+        foreach (Json::decode($this->questions) as $key => $value) {
+            $questions[$names[$key]] = $value;
+        }
+        $this->questions = $questions;
+        
+        parent::afterFind();
     }
 }

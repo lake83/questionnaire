@@ -17,7 +17,11 @@ echo DetailView::widget([
         ],
         'name',
         'phone',
-        'questions:ntext',
+        [
+            'attribute' => 'questions',
+            'format' => 'raw',
+            'value' => DetailView::widget(['model' => $model->questions])
+        ],
         'discount',
         'referrer',
         'created_at:datetime'

@@ -150,6 +150,24 @@ class Questions extends \yii\db\ActiveRecord
     }
     
     /**
+     * Returns a list of types info or name
+     * 
+     * @param integer $key key in an array of names
+     * @return mixed
+     */
+    public static function getTypesInfo($key = null)
+    {
+        $array = [
+            self::TYPE_TEXTAREA => 'Напишите свой вариант ответа',
+            self::TYPE_DROPDOWN => 'Выберите из списка',
+            self::TYPE_DATE => 'Выберите дату и время',
+            self::TYPE_SLIDER => 'Выберите сумму',
+            self::TYPE_FILE => 'Загрузите файл в формате: JPG, PNG'
+        ];
+        return is_null($key) ? $array : $array[$key];
+    }
+    
+    /**
      * Returns a list of images form or name
      * 
      * @param integer $key key in an array of names

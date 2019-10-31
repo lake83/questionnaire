@@ -51,18 +51,28 @@ class QuestionnairesController extends AdminController
             }
             Yii::$app->end();
         }
+        $fields_required = [];
+        $fields_safe = [];
+        
         foreach (($questions = $model->questions) as $question) {
             $fields[] = 'field_' . $question['id'];
+            if ($question['is_required']) {
+                $fields_required[] = 'field_' . $question['id'];
+            } else {
+                $fields_safe[] = 'field_' . $question['id'];
+            }
         }
         $arr = ['name', 'phone'];
         
         if ($model->is_discount) {
             $arr = array_merge($arr, ['discount']);
         }
-        $fields = array_merge($fields, $arr);
-        $data = new DynamicModel($fields);
-        $data->addRule($fields, 'required');
-           
+        $data = new DynamicModel(array_merge($fields, $arr));
+        $data->addRule(array_merge($fields_required, $arr), 'required');
+        
+        if ($fields_safe) {
+            $data->addRule($fields_safe, 'safe');
+        }
         return $this->renderAjax('view', ['model' => $model, 'questions' => $questions, 'data' => $data]);
     }
 }

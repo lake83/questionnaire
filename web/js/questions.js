@@ -17,6 +17,13 @@ $(document).on('click', '.q_buttons button[type="button"]', function(e){
     $('.progress-bar').css('width', progress + '%').attr('aria-valuenow', progress);
     $('.second-col .description').html(current.data('hint'));
     
+    var group = current.find('.form-group');
+    
+    if ((group.hasClass('required') && !group.hasClass('has-success')) || group.hasClass('has-error')) {
+        $('#next').attr('disabled', 'disabled');
+    } else {
+        $('#next').removeAttr('disabled');
+    }
     if (current.hasClass('test_done')) {
         $('.q_buttons button[type="button"]').hide();
         $('#send').show();
@@ -28,5 +35,19 @@ $('#dynamicmodel-conditions').click(function() {
         $('#send').removeAttr('disabled');
     } else {
         $('#send').attr('disabled', 'disabled');
+    }
+});
+
+if ($('.q_content div:visible .form-group').hasClass('required')) {
+    $('#next').attr('disabled', 'disabled');
+}
+
+$('[id^=dynamicmodel-field_]').on('keyup.yii', function(){
+    if ($(this).closest('.form-group').hasClass('required')) {
+        if ($(this).val() != '') {
+            $('#next').removeAttr('disabled');
+        } else {
+            $('#next').attr('disabled', 'disabled');
+        }
     }
 });

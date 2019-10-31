@@ -3,6 +3,7 @@
 use app\components\SiteHelper;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
+use app\models\Questions;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Questionnaires */
@@ -17,7 +18,7 @@ use yii\helpers\Url;
     <div class="main-col <?= $model->is_column ? 'col-md-10 col-sm-10' : 'col-md-12' ?> col-xs-12 no-padding">
         <div class="q_title"><img src="/images/title.png" /><?= $model->title ?></div>
         
-        <?php $form = ActiveForm::begin(['action' => Url::to(['questionnaires/view', 'id' => $model->id], true)]); ?>
+        <?php $form = ActiveForm::begin(['action' => Url::to(['questionnaires/view', 'id' => $model->id], true), 'validateOnType' => true]); ?>
         <div class="q_content">
             <?php if ($questions): $step = ceil(100/($steps = count($questions))); $formatter = Yii::$app->formatter; ?>
                 
@@ -27,7 +28,19 @@ use yii\helpers\Url;
                         $discont . ' %' : $formatter->asCurrency($discont, 'RUR', [\NumberFormatter::MAX_FRACTION_DIGITS => 0])) . '"' : '' ?>>
                         
                         <h3><?= $question['name'] ?></h3>
-                        <?= $form->field($data, 'field_' . $question['id'])->textInput() ?>
+                        <div class="q_info col-md-12">
+                            <div class="col-md-5 col-sm-5 col-xs-12">
+                                <div class="checkbox"><span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span></div>
+                                <?= ($question['type'] == Questions::TYPE_OPTIONS ||
+                                $question['type'] == Questions::TYPE_OPTIONS_IMGS || $question['type'] == Questions::TYPE_OPTIONS_AND_IMG) ?
+                                ($question['is_several'] ? 'Выберите один или несколько' : 'Выберите вариант') :
+                                Questions::getTypesInfo($question['type']) ?>
+                            </div>
+                            <div class="col-md-5 col-sm-5 col-xs-12"><?= !$question['is_required'] ? 'Можно пропустить' : '' ?></div>
+                        </div>
+                        
+                        <?= $this->render('_type_' . $question['type'], ['form' => $form, 'data' => $data, 'question' => $question]) ?>
+                                                
                     </div>
                 <?php endforeach ?>
                 <div id="<?= $key+1 ?>" class="test_done" data-hint="Введите данные, чтобы мы могли с вами связаться." data-progress="100"
@@ -62,13 +75,13 @@ use yii\helpers\Url;
         </div>
         
         <div class="row q_buttons">
-            <div class="col-md-8 col-sm-8 col-xs-12">
+            <div class="col-md-8 col-sm-7 col-xs-12">
                 <small>Готово на <span>0</span>%</small>
                 <div class="progress">
                     <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%"></div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="col-md-4 col-sm-5 col-xs-12">
                 <button id="prev" type="button" class="btn btn-light btn-lg"></button>
                 <button id="next" type="button" class="btn btn-danger btn-lg">Далее<span></span></button>
                 <button id="send" type="submit" class="btn btn-danger btn-lg" style="display:none">Отправить<span></span></button>
@@ -88,7 +101,7 @@ use yii\helpers\Url;
         
         <?php if ($model->is_discount): ?>
         <div class="discount">
-            <img src="/images/wallet.png" /><br />
+            <img src="/images/wallet.png" />
             <img class="discount_info" src="/images/info.png" title="<?= $model->discount_info ?>" />
             Ваша скидка
             <strong>0 <?= $model->discount_type == $model::DISCOUNT_PROCENT ? '%' : 'р.' ?></strong>

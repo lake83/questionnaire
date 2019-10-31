@@ -25,7 +25,10 @@
 }
 .q_content h3 {
     font-weight: bold;
-    margin-bottom: 40px;
+}
+.q_info {
+    padding: 15px 0 20px 0;
+    font-size: 13px;
 }
 .q_buttons {
     position: absolute;
@@ -133,10 +136,10 @@ small {
     margin-top: -50px;
 }
 .second-col .discount .discount_info {
-    position: absolute;
+    position: relative;
     width: 20px;
-    left: 140px;
-    top: 60px;
+    float: right;
+    top: 50px;
 }
 .second-col .discount strong {
     display: block;
@@ -183,4 +186,18 @@ small {
 }
 .checkbox label input[type="checkbox"]:disabled+.cr {
   opacity: .5;
+}
+.q_info .checkbox {
+    margin: 0;
+}
+.q_info .checkbox .cr {
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: .8em;
+    background-color: #000;
+    border: 1px solid #000;
+}
+.q_info .checkbox .cr .cr-icon {
+    font-size: .7em;
+    color: #fff;
 }
