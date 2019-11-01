@@ -31,7 +31,7 @@ $(document).on('click', '.q_buttons button[type="button"]', function(e){
 });
 
 $('#dynamicmodel-conditions').click(function() {
-    if ($(this).is(":checked")) {
+    if ($(this).is(':checked')) {
         $('#send').removeAttr('disabled');
     } else {
         $('#send').attr('disabled', 'disabled');
@@ -42,12 +42,23 @@ if ($('.q_content div:visible .form-group').hasClass('required')) {
     $('#next').attr('disabled', 'disabled');
 }
 
-$('[id^=dynamicmodel-field_]').on('keyup.yii', function(){
+$('[id^=dynamicmodel-field_]').on('keyup.yii, change.yii', function(){
     if ($(this).closest('.form-group').hasClass('required')) {
-        if ($(this).val() != '') {
+        if ($(this).val() != '' || $(this).find('input:checked').length) {
             $('#next').removeAttr('disabled');
         } else {
             $('#next').attr('disabled', 'disabled');
         }
+    }
+});
+
+$('#datetime-range').on('changeDate', function(e){
+    var start = $('#dynamicmodel-datetime_start').val(), end = $('#dynamicmodel-datetime_end').val(),
+        field = $(this).parents('.row').find('input[type="hidden"]');
+        
+    if (start != '' && end != '') {
+        field.val(start + ' - ' + end).change();
+    } else {
+        field.val('').change();
     }
 });

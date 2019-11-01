@@ -201,3 +201,46 @@ small {
     font-size: .7em;
     color: #fff;
 }
+.type_options {
+    padding: 10px;
+}
+.type_options .checkbox .cr {
+    width: 1.5em;
+    height: 1.5em;
+    background-color: #fff;
+    border-radius: .4em;
+}
+.type_options .checkbox label input[type="checkbox"]:checked+.cr {
+    background-color: #dc2d3e;
+    border: 1px solid #dc2d3e;
+}
+.type_options .checkbox .cr .cr-icon {
+    font-size: 0.9em;
+    color: #fff;
+}
+.type_options .checkbox label {
+    font-weight: bold;
+}
+.type_options_and_img {
+    border-radius: 10px;
+    width: 100%;
+    float: right;
+}
+.main-col .input-group-addon:first-child {
+    border-radius: 10px 0 0 10px !important;
+}
+.main-col .kv-container-to .input-group .input-group-addon:last-child {
+    border-radius: 0 10px 10px 0 !important;
+}
+
+
+@media screen and (min-width: 360px) and (max-width: 640px) {
+    .q_buttons {
+        position: relative;
+    }
+}
+@media screen and (max-width: 320px) and (max-width: 767px) {
+    .q_buttons {
+        position: relative;
+    }
+}

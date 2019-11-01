@@ -39,7 +39,7 @@ use app\models\Questions;
                             <div class="col-md-5 col-sm-5 col-xs-12"><?= !$question['is_required'] ? 'Можно пропустить' : '' ?></div>
                         </div>
                         
-                        <?= $this->render('_type_' . $question['type'], ['form' => $form, 'data' => $data, 'question' => $question]) ?>
+                        <?= $this->render('_type_' . $question['type'], ['form' => $form, 'data' => $data, 'question' => $question, 'is_column' => $model->is_column]) ?>
                                                 
                     </div>
                 <?php endforeach ?>

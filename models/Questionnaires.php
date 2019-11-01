@@ -107,6 +107,15 @@ class Questionnaires extends \yii\db\ActiveRecord
     public function getQuestions()
     {
         return $this->hasMany(Questions::className(), ['questionnaire_id' => 'id'])
-            ->andWhere(['is_active' => 1])->orderBy('position ASC')->asArray();
+            ->andWhere(['is_active' => 1])->orderBy('position ASC');
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getQuestionsIndexed()
+    {
+        return $this->hasMany(Questions::className(), ['questionnaire_id' => 'id'])
+            ->andWhere(['is_active' => 1])->orderBy('position ASC')->indexBy('id');
     }
 }

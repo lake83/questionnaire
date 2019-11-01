@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Results;
+use app\models\Questions;
 use yii\web\NotFoundHttpException;
 use yii\base\DynamicModel;
 use yii\helpers\Json;
@@ -56,7 +57,16 @@ class QuestionnairesController extends AdminController
         
         foreach (($questions = $model->questions) as $question) {
             $fields[] = 'field_' . $question['id'];
+            
+            if ($question['type'] == Questions::TYPE_DATE) {
+                $fields[] = 'datetime_start';
+                $fields[] = 'datetime_end';
+            }
             if ($question['is_required']) {
+                if ($question['type'] == Questions::TYPE_DATE) {
+                    $fields_required[] = 'datetime_start';
+                    $fields_required[] = 'datetime_end';
+                }
                 $fields_required[] = 'field_' . $question['id'];
             } else {
                 $fields_safe[] = 'field_' . $question['id'];

@@ -87,9 +87,28 @@ class Results extends \yii\db\ActiveRecord
     public function afterFind()
     {
         $questions = [];
-        $names = ArrayHelper::map($this->questionnaire->questions, 'id', 'name');
+        $data = $this->questionnaire->questionsIndexed;
+        $names = ArrayHelper::map($data, 'id', 'name');
+        
         foreach (Json::decode($this->questions) as $key => $value) {
-            $questions[$names[$key]] = $value;
+            switch ($data[$key]->type) {
+                case Questions::TYPE_DROPDOWN: {
+                    $value = $data[$key]->options[$value]['name'];
+                    break;
+                }
+                case (Questions::TYPE_OPTIONS || Questions::TYPE_OPTIONS_AND_IMG): {
+                    if (is_array($value)) {
+                        $result = [];
+                        
+                        foreach ($value as $one) {
+                            $result[] = $data[$key]->options[$one]['name'];
+                        }
+                        $value = implode(',', $result);
+                    }
+                    break;
+                }
+            }
+            $questions[$key . ' | ' . $names[$key]] = $value;
         }
         $this->questions = $questions;
         

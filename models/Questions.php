@@ -129,6 +129,15 @@ class Questions extends \yii\db\ActiveRecord
     }
     
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOptions()
+    {
+        return $this->hasMany(Options::className(), ['question_id' => 'id'])
+            ->andWhere(['is_active' => 1])->orderBy('position ASC')->indexBy('id')->asArray();
+    }
+    
+    /**
      * Returns a list of types or name
      * 
      * @param integer $key key in an array of names

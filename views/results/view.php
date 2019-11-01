@@ -7,6 +7,8 @@ use yii\widgets\DetailView;
 
 $this->title = 'Ответы клиента: ' . $model->name;
 
+$this->registerCss('#questions-results th {text-transform: lowercase;}');
+
 echo DetailView::widget([
     'model' => $model,
     'attributes' => [
@@ -20,7 +22,7 @@ echo DetailView::widget([
         [
             'attribute' => 'questions',
             'format' => 'raw',
-            'value' => DetailView::widget(['model' => $model->questions])
+            'value' => DetailView::widget(['id' => 'questions-results', 'model' => $model->questions])
         ],
         'discount',
         'referrer',
