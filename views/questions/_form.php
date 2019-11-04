@@ -18,7 +18,7 @@ $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
         'onchange' => 'if (this.value == ' . $model::TYPE_OPTIONS_AND_IMG .
             ') {$(".options_image").show()} else {$(".options_image").hide();$("#questions-image").val("")}
             if (this.value == ' . $model::TYPE_OPTIONS_IMGS .
-            ') {$(".images").show()} else {$(".images").hide();$("#questions-image_form, #questions-image_view").val("")}
+            ') {$(".images").show()} else {$(".images").hide();$("#questions-image_form").val("")}
             if (this.value == ' . $model::TYPE_SLIDER .
             ') {$(".slider").show()} else {$(".slider").hide();$("#questions-slider_min, #questions-slider_max, #questions-slider_step").val("")}
             if (this.value == ' . $model::TYPE_OPTIONS . ' || this.value == ' . $model::TYPE_OPTIONS_IMGS .
@@ -34,7 +34,6 @@ $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
     
     <div class="images"<?= $model->isNewRecord || $model->type !== $model::TYPE_OPTIONS_IMGS ? ' style="display:none"' : '' ?>>
         <?= $form->field($model, 'image_form')->dropDownList($model->getImagesForm(), ['prompt' => '- выбрать -']) ?>
-        <?= $form->field($model, 'image_view')->dropDownList($model->getImagesView(), ['prompt' => '- выбрать -']) ?>
     </div>
     
     <div class="slider"<?= $model->isNewRecord || $model->type !== $model::TYPE_SLIDER ? ' style="display:none"' : '' ?>>

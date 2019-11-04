@@ -39,7 +39,6 @@ class Questions extends \yii\db\ActiveRecord
     public $slider_step;
     
     public $image_form;
-    public $image_view;
     
     /**
      * {@inheritdoc}
@@ -84,7 +83,7 @@ class Questions extends \yii\db\ActiveRecord
                     return $('#questions-type').val() == " . self::TYPE_SLIDER . ";
                 }"
             ],
-            [['image_form', 'image_view'], 'required', 'when' => function($model) {
+            [['image_form'], 'required', 'when' => function($model) {
                     return $model->type == self::TYPE_OPTIONS_IMGS;
                 }, 'whenClient' => "function (attribute, value) {
                     return $('#questions-type').val() == " . self::TYPE_OPTIONS_IMGS . ";
@@ -108,7 +107,6 @@ class Questions extends \yii\db\ActiveRecord
             'hint' => 'Подсказка консультанта',
             'image' => 'Картинка',
             'image_form' => 'Формат изображения',
-            'image_view' => 'Расположение изображения',
             'slider_min' => 'Ползунок минимум',
             'slider_max' => 'Ползунок максимум',
             'slider_step' => 'Ползунок шаг',
@@ -185,24 +183,8 @@ class Questions extends \yii\db\ActiveRecord
     public static function getImagesForm($key = null)
     {
         $array = [
-            1 => 'Вертикально',
-            2 => 'Квадрат',
-            3 => 'Горизонтально'
-        ];
-        return is_null($key) ? $array : $array[$key];
-    }
-    
-    /**
-     * Returns a list of images view or name
-     * 
-     * @param integer $key key in an array of names
-     * @return mixed
-     */
-    public static function getImagesView($key = null)
-    {
-        $array = [
-            1 => 'Слайдер',
-            2 => 'Плиткой'
+            1 => 'Квадрат',
+            2 => 'Прямоугольник'
         ];
         return is_null($key) ? $array : $array[$key];
     }
@@ -221,7 +203,6 @@ class Questions extends \yii\db\ActiveRecord
         if ((int)$this->type == self::TYPE_OPTIONS_IMGS) {
             $imgs = Json::decode($this->image);
             $this->image_form = $imgs['form'];
-            $this->image_view = $imgs['view'];
         }
         parent::afterFind();
     }
@@ -237,7 +218,7 @@ class Questions extends \yii\db\ActiveRecord
             $this->slider = '';
         }
         if ((int)$this->type == self::TYPE_OPTIONS_IMGS) {
-            $this->image = Json::encode(['form' => $this->image_form, 'view' => $this->image_view]);
+            $this->image = Json::encode(['form' => $this->image_form]);
         } elseif ((int)$this->type !== self::TYPE_OPTIONS_AND_IMG) {
             $this->image = '';
         }
