@@ -196,13 +196,13 @@ class Questions extends \yii\db\ActiveRecord
     {
         if ((int)$this->type == self::TYPE_SLIDER) {
             $slider = Json::decode($this->slider);
-            $this->slider_min = $slider['min'];
-            $this->slider_max = $slider['max'];
-            $this->slider_step = $slider['step'];
+            $this->slider_min = (int)$slider['min'];
+            $this->slider_max = (int)$slider['max'];
+            $this->slider_step = (int)$slider['step'];
         }
         if ((int)$this->type == self::TYPE_OPTIONS_IMGS) {
             $imgs = Json::decode($this->image);
-            $this->image_form = $imgs['form'];
+            $this->image_form = (int)$imgs['form'];
         }
         parent::afterFind();
     }

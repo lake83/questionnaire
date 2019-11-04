@@ -12,9 +12,9 @@ use kartik\slider\Slider;
         <?= $form->field($data, 'field_' . $question['id'])->widget(Slider::classname(), [
             'sliderColor' => '#dc2d3e',
             'pluginOptions' => [
-                'min' => (int)$question['slider_min'],
-                'max' => (int)$question['slider_max'],
-                'step' => (int)$question['slider_step'],
+                'min' => $question['slider_min'],
+                'max' => $question['slider_max'],
+                'step' => $question['slider_step'],
                 'range' => true,
                 'handle' => 'custom'
             ]

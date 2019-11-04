@@ -74,7 +74,7 @@ use app\models\Questions;
                 </div>
                 
                 <?php if ($model->is_discount) {
-                    echo $form->field($data, 'discount')->hiddenInput()->label(false)->error(false);
+                    echo $form->field($data, 'discount')->hiddenInput(['value' => 0])->label(false)->error(false);
                 } ?>
             <?php else: ?>
                 <p>Опрос не содержит активных вопросов.</p>

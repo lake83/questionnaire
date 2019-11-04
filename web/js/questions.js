@@ -29,6 +29,9 @@ $(document).on('click', '.q_buttons button[type="button"]', function(e){
         $('.q_buttons button[type="button"]').hide();
         $('#send').show();
     }
+    if (current.find('.slick-slider').length) {
+        $('.slick-slider').slick('resize');
+    }
 });
 
 $('#dynamicmodel-conditions').click(function() {

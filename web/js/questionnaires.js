@@ -24,7 +24,7 @@ if (typeof jQuery == 'undefined') {
     }
     $(document).on('click', 'a[data-questionnaire]', function(e){
         e.preventDefault();
-        modal.find('.modalBody').html('<iframe id="container" src="' + domain + '/questionnaires/view?id=' + $(this).data('questionnaire') + '" scrolling="auto" frameborder="0" style="width:100%" onload="$(\'#loading\').hide();"></iframe>');
+        modal.find('.modalBody').html('<iframe id="container" src="' + domain + '/questionnaires/view?id=' + $(this).data('questionnaire') + '" scrolling="auto" frameborder="0" onload="$(\'#loading\').hide();"></iframe>');
         modal.show();
     });
 }

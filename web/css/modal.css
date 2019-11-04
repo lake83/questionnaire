@@ -43,6 +43,6 @@
 iframe {
     display:block;
     height: 80vh;
-    width: 75vw;
+    width: 100%;
     overflow: hidden;
 }

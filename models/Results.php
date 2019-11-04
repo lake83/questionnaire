@@ -113,7 +113,7 @@ class Results extends \yii\db\ActiveRecord
                     }
                     break;
                 }
-                case (Questions::TYPE_OPTIONS || Questions::TYPE_OPTIONS_AND_IMG): {
+                case (Questions::TYPE_OPTIONS || Questions::TYPE_OPTIONS_IMGS || Questions::TYPE_OPTIONS_AND_IMG): {
                     if (is_array($value)) {
                         $result = [];
                         

@@ -244,6 +244,9 @@ small {
 .file-drop-zone-title {
     color: #dc2d3e !important;
 }
+.slider_field {
+    width: calc(100% - 20px);
+}
 .slider_field b {
     font-size: 20px;
 }
@@ -263,6 +266,19 @@ small {
 .slider-handle.custom::before {
     display: none;
 }
+.with_imgs {
+    height: 230px;
+}
+.with_imgs .checkbox label {
+    padding-left: 0;
+}
+.with_imgs .type_options {
+    text-align: center;
+}
+.with_imgs .type_options_and_img {
+    float: none;
+}
+
 
 @media screen and (min-width: 360px) and (max-width: 640px) {
     .q_buttons {

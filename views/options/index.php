@@ -49,11 +49,17 @@ $request = Yii::$app->request;
                             'type' => $type
                         ], ['title' => 'Редактировать', 'data-pjax' => 0]);
                     },
-                    'delete' => function ($url, $model, $key) use ($question_id){
-                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['delete', 'id' => $model->id, 'question_id' => $question_id], ['title' => 'Удалить', 'data' => [
-                            'confirm' => 'Вы уверены, что хотите удалить этот элемент?',
-                            'method' => 'post'
-                        ]]);
+                    'delete' => function ($url, $model, $key) use ($question_id, $type){
+                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['delete',
+                            'id' => $model->id,
+                            'question_id' => $question_id,
+                            'type' => $type
+                            ],
+                            ['title' => 'Удалить', 'data' => [
+                                'confirm' => 'Вы уверены, что хотите удалить этот элемент?',
+                                'method' => 'post'
+                            ]
+                        ]);
                     }
                 ],
                 'options' => ['width' => '50px']
