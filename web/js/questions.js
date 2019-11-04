@@ -12,6 +12,7 @@ $(document).on('click', '.q_buttons button[type="button"]', function(e){
     }
     if ($('.second-col .discount').length) {
         $('.second-col .discount strong').text(current.data('discount'));
+        $('#dynamicmodel-discount').val(current.data('discount'));
     }
     $('.q_buttons small span').text(progress);
     $('.progress-bar').css('width', progress + '%').attr('aria-valuenow', progress);
@@ -52,8 +53,9 @@ $('[id^=dynamicmodel-field_]').on('keyup.yii, change.yii', function(){
     }
 });
 
-$('#datetime-range').on('changeDate', function(e){
-    var start = $('#dynamicmodel-datetime_start').val(), end = $('#dynamicmodel-datetime_end').val(),
+$('[id^=datetime-range_]').on('changeDate', function(e){
+    var start = $(this).find('input[id^=dynamicmodel-datetime_start_]').val(),
+        end = $(this).find('input[id^=dynamicmodel-datetime_end_]').val(),
         field = $(this).parents('.row').find('input[type="hidden"]');
         
     if (start != '' && end != '') {
@@ -61,4 +63,10 @@ $('#datetime-range').on('changeDate', function(e){
     } else {
         field.val('').change();
     }
+});
+
+$('.slider_field input').on('slideStop', function(slideEvt) {
+	var slider = $(this).parents('.slider_field');
+    slider.find('.min').text(slideEvt.value[0]);
+    slider.find('.max').text(slideEvt.value[1]);
 });

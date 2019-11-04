@@ -11,7 +11,7 @@ use kartik\datetime\DateTimePicker;
 <div class="row col-md-11 col-sm-12 col-xs-12">
 <?php 
 echo FieldRange::widget([
-    'id' => 'datetime-range',
+    'id' => 'datetime-range_' . $question['id'],
     'form' => $form,
     'model' => $data,
     'useAddons' => false,
@@ -19,7 +19,7 @@ echo FieldRange::widget([
     'separator' => '&larr; до &rarr;',
     'separatorOptions' => ['style' => 'padding: 15px 12px;'],
     'label' => '',
-    'attribute1' => 'datetime_start',
+    'attribute1' => 'datetime_start_' . $question['id'],
     'widgetOptions1' => [
         'pluginOptions' => [
             'autoclose' => true,
@@ -27,7 +27,7 @@ echo FieldRange::widget([
         ],
         'type' => DateTimePicker::TYPE_COMPONENT_PREPEND
     ],
-    'attribute2' => 'datetime_end',
+    'attribute2' => 'datetime_end_' . $question['id'],
     'widgetOptions2' => [
         'pluginOptions' => [
             'autoclose' => true,

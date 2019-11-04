@@ -28,7 +28,9 @@
         "pheme/yii2-toggle-column": "^0.7.0",
         "kartik-v/yii2-widget-select2": "@dev",
         "kartik-v/yii2-field-range": "dev-master",
-        "kartik-v/yii2-widget-datetimepicker": "dev-master"
+        "kartik-v/yii2-widget-datetimepicker": "dev-master",
+        "kartik-v/yii2-widget-fileinput": "dev-master",
+        "kartik-v/yii2-slider": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

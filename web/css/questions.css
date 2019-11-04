@@ -232,15 +232,51 @@ small {
 .main-col .kv-container-to .input-group .input-group-addon:last-child {
     border-radius: 0 10px 10px 0 !important;
 }
-
+.file-preview .file-preview-frame {
+    width: calc(33.33% - 16px);
+}
+.krajee-default.file-preview-frame .file-thumbnail-footer {
+    display: none;
+}
+.file-drop-zone {
+    min-height: 220px;
+}
+.file-drop-zone-title {
+    color: #dc2d3e !important;
+}
+.slider_field b {
+    font-size: 20px;
+}
+.slider.slider-horizontal {
+    width: 100% !important;
+    margin-top: 20px;
+}
+.slider-handle.custom {
+    background: transparent none;
+    background-image: url('/images/handler.png') !important;
+    background-size: contain !important;
+    width: 70px;
+    height: 70px;
+    top: -20px;
+    margin-left: -35px !important;
+}
+.slider-handle.custom::before {
+    display: none;
+}
 
 @media screen and (min-width: 360px) and (max-width: 640px) {
     .q_buttons {
         position: relative;
     }
+    .file-preview .file-preview-frame {
+        width: auto;
+    }
 }
 @media screen and (max-width: 320px) and (max-width: 767px) {
     .q_buttons {
         position: relative;
+    }
+    .file-preview .file-preview-frame {
+        width: auto;
     }
 }

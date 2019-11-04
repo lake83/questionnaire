@@ -18,7 +18,11 @@ use app\models\Questions;
     <div class="main-col <?= $model->is_column ? 'col-md-10 col-sm-10' : 'col-md-12' ?> col-xs-12 no-padding">
         <div class="q_title"><img src="/images/title.png" /><?= $model->title ?></div>
         
-        <?php $form = ActiveForm::begin(['action' => Url::to(['questionnaires/view', 'id' => $model->id], true), 'validateOnType' => true]); ?>
+        <?php $form = ActiveForm::begin([
+            'action' => Url::to(['questionnaires/view', 'id' => $model->id], true),
+            'validateOnType' => true,
+            'options' => ['enctype' => 'multipart/form-data']
+        ]); ?>
         <div class="q_content">
             <?php if ($questions): $step = ceil(100/($steps = count($questions))); $formatter = Yii::$app->formatter; ?>
                 
@@ -69,6 +73,9 @@ use app\models\Questions;
                     </div>
                 </div>
                 
+                <?php if ($model->is_discount) {
+                    echo $form->field($data, 'discount')->hiddenInput()->label(false)->error(false);
+                } ?>
             <?php else: ?>
                 <p>Опрос не содержит активных вопросов.</p>
             <?php endif ?>
@@ -104,7 +111,7 @@ use app\models\Questions;
             <img src="/images/wallet.png" />
             <img class="discount_info" src="/images/info.png" title="<?= $model->discount_info ?>" />
             Ваша скидка
-            <strong>0 <?= $model->discount_type == $model::DISCOUNT_PROCENT ? '%' : 'р.' ?></strong>
+            <strong data-answers="0">0 <?= $model->discount_type == $model::DISCOUNT_PROCENT ? '%' : 'р.' ?></strong>
         </div>
         <?php endif ?>
     </div>

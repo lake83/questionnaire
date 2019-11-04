@@ -5,6 +5,9 @@ namespace app\models;
 use yii\behaviors\TimestampBehavior;
 use yii\helpers\Json;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
+use app\components\SiteHelper;
+use yii\helpers\FileHelper;
 
 /**
  * This is the model class for table "results".
@@ -20,6 +23,8 @@ use yii\helpers\ArrayHelper;
  */
 class Results extends \yii\db\ActiveRecord
 {
+    public $questionsClear;
+    
     /**
      * {@inheritdoc}
      */
@@ -89,11 +94,23 @@ class Results extends \yii\db\ActiveRecord
         $questions = [];
         $data = $this->questionnaire->questionsIndexed;
         $names = ArrayHelper::map($data, 'id', 'name');
+        $this->questionsClear = Json::decode($this->questions);
         
-        foreach (Json::decode($this->questions) as $key => $value) {
+        foreach ($this->questionsClear as $key => $value) {
             switch ($data[$key]->type) {
                 case Questions::TYPE_DROPDOWN: {
                     $value = $data[$key]->options[$value]['name'];
+                    break;
+                }
+                case Questions::TYPE_FILE: {
+                    if (is_array($value) && !empty($value)) {
+                        $result = [];
+                        
+                        foreach ($value as $one) {
+                            $result[] = Html::a(Html::img(SiteHelper::resized_image($one, 120, 100)), '/images/uploads/source/' . $one, ['class' => 'slide']);
+                        }
+                        $value = '<div class="lightgallery">' . implode(' ', $result) . '</div>';
+                    }
                     break;
                 }
                 case (Questions::TYPE_OPTIONS || Questions::TYPE_OPTIONS_AND_IMG): {
@@ -108,10 +125,30 @@ class Results extends \yii\db\ActiveRecord
                     break;
                 }
             }
-            $questions[$key . ' | ' . $names[$key]] = $value;
+            $questions[$key . ' | ' . $names[$key]] = $value?: '<span class="not-set">(не задано)</span>';
         }
         $this->questions = $questions;
         
         parent::afterFind();
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    public function afterDelete()
+    {
+        $data = $this->questionnaire->questionsIndexed;
+        
+        foreach ($this->questionsClear as $key => $value) {
+            if ($data[$key]->type == Questions::TYPE_FILE && !empty($value)) {
+                $dirs = FileHelper::findDirectories(\Yii::$app->basePath . '/web/images/uploads/', ['recursive' => false]);
+                foreach ($value as $one) {
+                    foreach ($dirs as $dir) {
+                        FileHelper::unlink($dir . '/' . $one);
+                    }
+                }        
+            }
+        }
+        return parent::afterDelete();
     }
 }
