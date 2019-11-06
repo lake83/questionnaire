@@ -9,8 +9,8 @@ class SlickAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/slick.css',
-        'css/slick-theme.css'
+        'css/slick.min.css',
+        'css/slick-theme.min.css'
     ];
     public $js = [
         'js/slick.min.js'

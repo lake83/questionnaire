@@ -144,7 +144,10 @@ class Results extends \yii\db\ActiveRecord
                 $dirs = FileHelper::findDirectories(\Yii::$app->basePath . '/web/images/uploads/', ['recursive' => false]);
                 foreach ($value as $one) {
                     foreach ($dirs as $dir) {
-                        FileHelper::unlink($dir . '/' . $one);
+                        $path = $dir . '/' . $one;
+                        if (file_exists($path)) {
+                            FileHelper::unlink($path);
+                        }
                     }
                 }        
             }

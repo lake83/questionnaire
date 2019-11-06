@@ -1,7 +1,7 @@
 if (typeof jQuery == 'undefined') {
     alert('Для работы опроса необходим jQuery.');
 } else {
-    var domain = 'http://questions.loc', head = document.getElementsByTagName('head')[0], link = document.createElement('link');
+    var scripts = document.getElementsByTagName('script'), domain = scripts[scripts.length - 1].src.split('/js/')[0], head = document.getElementsByTagName('head')[0], link = document.createElement('link');
 
     link.rel = 'stylesheet';
     link.type = 'text/css';

@@ -10,7 +10,7 @@ use app\components\SiteHelper;
 
 $this->title = 'Опросы';
 
-$this->registerJsFile('/js/questionnaires.js', ['depends' => 'yii\web\JqueryAsset']);
+$this->registerJsFile(YII_DEBUG ? '/js/questionnaires.js' : '/js/questionnaires.min.js', ['depends' => 'yii\web\JqueryAsset']);
 ?>
 
 <p>
@@ -26,7 +26,7 @@ $this->registerJsFile('/js/questionnaires.js', ['depends' => 'yii\web\JqueryAsse
        
 Например:
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="<?= \yii\helpers\Url::base(true); ?>/js/questionnaires.js" type="application/javascript"></script>
+<script src="<?= \yii\helpers\Url::base(true); ?>/js/questionnaires.min.js" type="application/javascript"></script>
        
 Ссылка для открытия виджета должна содержать элемент data-questionnaire="<id>"
        

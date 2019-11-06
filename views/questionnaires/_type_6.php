@@ -8,7 +8,7 @@ use kartik\datetime\DateTimePicker;
 /* @var $form yii\bootstrap\ActiveForm */
 ?>
 
-<div class="row col-md-11 col-sm-12 col-xs-12">
+<div class="row col-md-11 col-sm-12 col-xs-12" style="overflow: auto;">
 <?php 
 echo FieldRange::widget([
     'id' => 'datetime-range_' . $question['id'],

@@ -1,5 +1,5 @@
 $(document).on('click', '.q_buttons button[type="button"]', function(e){
-    var block = $('.q_content div:visible').eq(0), id = parseInt(block.attr('id')), current = 0, progress = 0;
+    var block = $('.q_content div.q_content_block:visible').eq(0), id = parseInt(block.attr('id')), current = 0, progress = 0;
         
     if ($(this).is('#next')) {
         current = $('#' + (id+1)); progress = current.data('progress');
@@ -10,13 +10,13 @@ $(document).on('click', '.q_buttons button[type="button"]', function(e){
         block.hide();
         current.show();
     }
-    if ($('.second-col .discount').length) {
-        $('.second-col .discount strong').text(current.data('discount'));
+    if ($('.discount').length) {
+        $('.discount strong').text(current.data('discount'));
         $('#dynamicmodel-discount').val(current.data('discount'));
     }
     $('.q_buttons small span').text(progress);
     $('.progress-bar').css('width', progress + '%').attr('aria-valuenow', progress);
-    $('.second-col .description').html(current.data('hint'));
+    $('.description').html(current.data('hint'));
     
     var group = current.find('.form-group');
     
@@ -42,7 +42,7 @@ $('#dynamicmodel-conditions').click(function() {
     }
 });
 
-if ($('.q_content div:visible .form-group').hasClass('required')) {
+if ($('.q_content div.q_content_block:visible .form-group').hasClass('required')) {
     $('#next').attr('disabled', 'disabled');
 }
 
@@ -70,6 +70,11 @@ $('[id^=datetime-range_]').on('changeDate', function(e){
 
 $('.slider_field input').on('slideStop', function(slideEvt) {
 	var slider = $(this).parents('.slider_field');
-    slider.find('.min').text(slideEvt.value[0]);
-    slider.find('.max').text(slideEvt.value[1]);
+    
+    if (!isNaN(slideEvt.value[0])) {
+        slider.find('.min').text(slideEvt.value[0]);
+    }        
+    if (!isNaN(slideEvt.value[1])) {
+        slider.find('.max').text(slideEvt.value[1]);
+    }
 });

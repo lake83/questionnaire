@@ -34,7 +34,7 @@ $this->registerJs("$('#dynamicmodel-field_" . $question['id'] . "').slick({
     {
       breakpoint: 768,
       settings: {
-        slidesToShow: " . ($is_column ? 2 : 3) . ",
+        slidesToShow: 3,
         slidesToScroll: 1
       }
     },

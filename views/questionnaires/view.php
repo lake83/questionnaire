@@ -26,8 +26,34 @@ use app\models\Questions;
         <div class="q_content">
             <?php if ($questions): $step = ceil(100/($steps = count($questions))); $formatter = Yii::$app->formatter; ?>
                 
+                <?php if ($model->is_column): ?>
+                <div class="m_second-col visible-xs">
+                
+                <?php $this->beginBlock('second-col', true); ?>
+        
+                    <div class="person_img" style="background-image: url('<?= SiteHelper::resized_image($model->person_image, 70, null) ?>');"></div>
+                    <?= $model->person_name ?>
+                    <small><?= $model->person_post ?></small>
+        
+                    <div class="clearfix"></div>
+                    <div class="description"><?= isset($questions[0]) ? $questions[0]['hint'] : '' ?></div>
+        
+                    <?php if ($model->is_discount): ?>
+                    <div class="discount">
+                        <img src="/images/wallet.png" />
+                        <img class="discount_info" src="/images/info.png" title="<?= $model->discount_info ?>" />
+                        Ваша скидка
+                        <strong data-answers="0">0 <?= $model->discount_type == $model::DISCOUNT_PROCENT ? '%' : 'р.' ?></strong>
+                    </div>
+                    <?php endif ?>
+        
+                <?php $this->endBlock(); ?>
+        
+                </div>
+                <?php endif ?>
+                
                 <?php foreach ($questions as $key => $question): ?>
-                    <div<?= $key>0 ? ' style="display:none"' : '' ?> id="<?= $key ?>" data-hint="<?= $question['hint'] ?>" data-progress="<?= $step*$key ?>"
+                    <div class="q_content_block"<?= $key>0 ? ' style="display:none"' : '' ?> id="<?= $key ?>" data-hint="<?= $question['hint'] ?>" data-progress="<?= $step*$key ?>"
                         <?php $discont = round(($model->discount_value/$steps)*$key, 2); echo $model->is_discount ? ' data-discount="' . ($model->discount_type == $model::DISCOUNT_PROCENT ?
                         $discont . ' %' : $formatter->asCurrency($discont, 'RUR', [\NumberFormatter::MAX_FRACTION_DIGITS => 0])) . '"' : '' ?>>
                         
@@ -98,22 +124,10 @@ use app\models\Questions;
     </div>
 
     <?php if ($model->is_column): ?>
-    <div class="second-col col-md-2 col-sm-2 col-xs-12 no-padding">
-        <div class="person_img" style="background-image: url('<?= SiteHelper::resized_image($model->person_image, 70, null) ?>');"></div>
-        <?= $model->person_name ?>
-        <small><?= $model->person_post ?></small>
+    <div class="second-col col-md-2 col-sm-2 hidden-xs no-padding">
         
-        <div class="clearfix"></div>
-        <div class="description"><?= isset($questions[0]) ? $questions[0]['hint'] : '' ?></div>
+        <?= $this->blocks['second-col']; ?>
         
-        <?php if ($model->is_discount): ?>
-        <div class="discount">
-            <img src="/images/wallet.png" />
-            <img class="discount_info" src="/images/info.png" title="<?= $model->discount_info ?>" />
-            Ваша скидка
-            <strong data-answers="0">0 <?= $model->discount_type == $model::DISCOUNT_PROCENT ? '%' : 'р.' ?></strong>
-        </div>
-        <?php endif ?>
     </div>
     <?php endif ?>
 </div>
