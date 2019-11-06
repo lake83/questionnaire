@@ -27,6 +27,7 @@ $(document).on('click', '.q_buttons button[type="button"]', function(e){
     }
     if (current.hasClass('test_done')) {
         $('.q_buttons button[type="button"]').hide();
+        $('#dynamicmodel-referrer').val(window.location.href);
         $('#send').show();
     }
     if (current.find('.slick-slider').length) {

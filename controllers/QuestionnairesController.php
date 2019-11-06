@@ -51,7 +51,7 @@ class QuestionnairesController extends AdminController
                 $fields_safe[] = 'field_' . $question['id'];
             }
         }
-        $arr = ['name', 'phone'];
+        $arr = ['name', 'phone', 'referrer'];
         
         if ($model->is_discount) {
             $arr = array_merge($arr, ['discount']);
@@ -73,7 +73,7 @@ class QuestionnairesController extends AdminController
             if ($model->is_discount) {
                 $result->discount = $data->discount;
             }
-            $result->referrer = $request->referrer;
+            $result->referrer = $data->referrer;
             
             foreach ($data->attributes as $key => $field) {
                 if (strpos($key, 'field_') !== false) {
