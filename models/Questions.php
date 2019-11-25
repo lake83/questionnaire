@@ -230,18 +230,12 @@ class Questions extends \yii\db\ActiveRecord
         }
         if ((int)$this->type == self::TYPE_OPTIONS_IMGS) {
             $this->image = Json::encode(['form' => $this->image_form]);
-        } elseif ((int)$this->type !== self::TYPE_OPTIONS_AND_IMG) {
-            $this->image = '';
         }
         if ((int)$this->type == self::TYPE_FILE) {
             $this->image = Json::encode(['btn_text' => $this->file_button]);
-        } elseif ((int)$this->type !== self::TYPE_FILE) {
-            $this->image = '';
         }
         if ((int)$this->type == self::TYPE_TEXTAREA) {
             $this->image = Json::encode(['plc_text' => $this->textarea_placeholder]);
-        } elseif ((int)$this->type !== self::TYPE_TEXTAREA) {
-            $this->image = '';
         }
         return parent::beforeSave($insert);
     }
