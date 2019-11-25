@@ -7,7 +7,7 @@
     <tbody>
         <tr style="padding:0;text-align:left;vertical-align:top;width:100%;">
             <td>                 
-                <h3 style="padding:0 25px;color:#485671;font:400 24px Arial;margin:35px 0;">Поступила новая заявка с опроса "<?= $data->questionnaire->title ?>"</h3>
+                <h3 style="color:#485671;font:400 24px Arial;margin:35px 0;">Поступила новая заявка с опроса "<?= $data->questionnaire->title ?>"</h3>
                 
                 <div style="margin-bottom:30px;">
                     <span style="color:#4a5773;font:400 16px Arial;">Контакты:</span>
@@ -37,9 +37,11 @@
                     <span style="color:#4a5773;font:400 16px Arial;"><a href="<?= $data->referrer ?>">Перейти</a></span>
                 </div>
                 
-                <hr style="border:0;height:1px;background-color:#687aa1;margin:5px 0 35px 0;width:calc(100% - 50px);margin-left:25px;"/>
+                <hr style="border:0;height:1px;background-color:#687aa1;margin:5px 0 35px 0;width:calc(100% - 50px);"/>
                 
-                <span style="padding:0 25px;color:#4a5773;font:400 16px Arial;">Время заявки: <?= Yii::$app->formatter->asDateTime($data->created_at, 'php:d l Y, H:i') ?></span><br />
+                <div style="margin-bottom:30px;">
+                    <span style="color:#4a5773;font:400 16px Arial;">Время заявки: <?= Yii::$app->formatter->asDateTime($data->created_at, 'php:d l Y, H:i') ?></span><br />
+                </div>
                 <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['results/view', 'id' => $data->id]) ?>" style="color:#1c69ff;font:400 16px Arial;margin:30px 0;">Посмотреть в личном кабинете</a>
             </td>
         </tr>
