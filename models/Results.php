@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\helpers\Json;
 use yii\helpers\ArrayHelper;
@@ -91,43 +92,7 @@ class Results extends \yii\db\ActiveRecord
      */
     public function afterFind()
     {
-        $questions = [];
-        $data = $this->questionnaire->questionsIndexed;
-        $names = ArrayHelper::map($data, 'id', 'name');
-        $this->questionsClear = Json::decode($this->questions);
-        
-        foreach ($this->questionsClear as $key => $value) {
-            switch ($data[$key]->type) {
-                case Questions::TYPE_DROPDOWN: {
-                    $value = $data[$key]->options[$value]['name'];
-                    break;
-                }
-                case Questions::TYPE_FILE: {
-                    if (is_array($value) && !empty($value)) {
-                        $result = [];
-                        
-                        foreach ($value as $one) {
-                            $result[] = Html::a(Html::img(SiteHelper::resized_image($one, 120, 100)), '/images/uploads/source/' . $one, ['class' => 'slide']);
-                        }
-                        $value = '<div class="lightgallery">' . implode(' ', $result) . '</div>';
-                    }
-                    break;
-                }
-                case (Questions::TYPE_OPTIONS || Questions::TYPE_OPTIONS_IMGS || Questions::TYPE_OPTIONS_AND_IMG): {
-                    if (is_array($value)) {
-                        $result = [];
-                        
-                        foreach ($value as $one) {
-                            $result[] = $data[$key]->options[$one]['name'];
-                        }
-                        $value = implode(',', $result);
-                    }
-                    break;
-                }
-            }
-            $questions[$key . ' | ' . $names[$key]] = $value?: '<span class="not-set">(не задано)</span>';
-        }
-        $this->questions = $questions;
+        $this->questions = $this->makeQuestions();
         
         parent::afterFind();
     }
@@ -153,5 +118,63 @@ class Results extends \yii\db\ActiveRecord
             }
         }
         return parent::afterDelete();
+    }
+    
+    /**
+     * Send e-mail after save results
+     */
+    public function sendEmail()
+    {
+        return Yii::$app->mailer->compose(['html' => 'results-html'], ['data' => $this])
+            ->setFrom(['info@' . Yii::$app->request->hostName => ($name = Yii::$app->name)])
+            ->setTo(Yii::$app->params['adminEmail'])
+            ->setSubject('Новая заявка ot ' . $name . ' - ' . $this->questionnaire->title)
+            ->send();
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    public function makeQuestions()
+    {
+        $questions = [];
+        $data = $this->questionnaire->questionsIndexed;
+        $names = ArrayHelper::map($data, 'id', 'name');
+        $this->questionsClear = Json::decode($this->questions);
+        
+        foreach ($this->questionsClear as $key => $value) {
+            switch ($data[$key]->type) {
+                case Questions::TYPE_DROPDOWN: {
+                    $value = $data[$key]->options[$value]['name'];
+                    break;
+                }
+                case Questions::TYPE_FILE: {
+                    if (is_array($value) && !empty($value)) {
+                        $result = [];
+                        
+                        foreach ($value as $one) {
+                            $result[] = Html::a(Html::img(($hostinfo = Yii::$app->request->hostinfo) .
+                                SiteHelper::resized_image($one, 120, 100)),
+                                $hostinfo . '/images/uploads/source/' . $one, ['class' => 'slide']);
+                        }
+                        $value = '<div class="lightgallery">' . implode(' ', $result) . '</div>';
+                    }
+                    break;
+                }
+                case (Questions::TYPE_OPTIONS || Questions::TYPE_OPTIONS_IMGS || Questions::TYPE_OPTIONS_AND_IMG): {
+                    if (is_array($value)) {
+                        $result = [];
+                        
+                        foreach ($value as $one) {
+                            $result[] = $data[$key]->options[$one]['name'];
+                        }
+                        $value = implode(',', $result);
+                    }
+                    break;
+                }
+            }
+            $questions[$key . ' | ' . $names[$key]] = $value?: '<span class="not-set">(не задано)</span>';
+        }
+        return $questions;
     }
 }

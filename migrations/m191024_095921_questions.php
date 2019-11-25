@@ -14,6 +14,7 @@ class m191024_095921_questions extends Migration
             'questionnaire_id' => $this->integer()->notNull(),
             'name' => $this->string()->notNull(),
             'type' => $this->integer(1)->notNull(),
+            'info' => $this->string(100)->notNull(),
             'hint' => $this->string()->notNull(),
             'image' => $this->string()->notNull(),
             'slider' => $this->string()->notNull(),

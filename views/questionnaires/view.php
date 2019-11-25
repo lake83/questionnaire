@@ -3,7 +3,6 @@
 use app\components\SiteHelper;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
-use app\models\Questions;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Questionnaires */
@@ -59,15 +58,13 @@ use app\models\Questions;
                         
                         <h3><?= $question['name'] ?></h3>
                         <div class="q_info col-md-12">
-                            <div class="col-md-5 col-sm-5 col-xs-12">
-                                <div class="checkbox"><span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span></div>
-                                <?= ($question['type'] == Questions::TYPE_OPTIONS ||
-                                $question['type'] == Questions::TYPE_OPTIONS_IMGS || $question['type'] == Questions::TYPE_OPTIONS_AND_IMG) ?
-                                ($question['is_several'] ? 'Выберите один или несколько' : 'Выберите вариант') :
-                                Questions::getTypesInfo($question['type']) ?>
+                            <div class="col-md-11 col-sm-11 col-xs-12">
+                                <div class="checkbox note_check"><span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span></div>
+                                <div class="note note_box"><?= $question['info'] ?></div>
+                                <?= !$question['is_required'] ? '<div class="note note_required">Можно пропустить</div>' : '' ?>
                             </div>
-                            <div class="col-md-5 col-sm-5 col-xs-12"><?= !$question['is_required'] ? 'Можно пропустить' : '' ?></div>
                         </div>
+                        <div class="checkbox"></div>
                         
                         <?= $this->render('_type_' . $question['type'], ['form' => $form, 'data' => $data, 'question' => $question, 'is_column' => $model->is_column]) ?>
                                                 
@@ -81,7 +78,7 @@ use app\models\Questions;
                     <span>Отлично, вы завершили тест!</span>
                     <h3>Введите ваши контактные данные</h3>
                     
-                    <div class="row col-md-11 col-xs-12">
+                    <div class="row <?= $model->is_column ? 'col-md-11 col-sm-11' : 'col-md-12 col-sm-12' ?> col-xs-12" style="margin: 30px 0;">
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <?= $form->field($data, 'name')->textInput()->label('Ваше имя')->error(false) ?>
                         </div>
@@ -93,7 +90,7 @@ use app\models\Questions;
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" id="dynamicmodel-conditions" name="conditions" value="1" checked="checked">
-                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>Принимаю условия обработки данных
+                                <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>Принимаю <a href="<?= Url::to(['site/conditions'], true) ?>" target="_blank">условия обработки данных</a> 
                             </label>
                         </div>
                     </div>
@@ -109,13 +106,13 @@ use app\models\Questions;
         </div>
         
         <div class="row q_buttons">
-            <div class="col-md-8 col-sm-7 col-xs-12">
+            <div class="col-md-9 col-sm-8 col-xs-12">
                 <small>Готово на <span>0</span>%</small>
                 <div class="progress">
                     <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%"></div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-5 col-xs-12">
+            <div class="col-md-3 col-sm-4 col-xs-12"<?= !$model->is_column ? ' style="text-align: right;"' : '' ?>>
                 <button id="prev" type="button" class="btn btn-light btn-lg"></button>
                 <button id="next" type="button" class="btn btn-danger btn-lg">Далее<span></span></button>
                 <button id="send" type="submit" class="btn btn-danger btn-lg" style="display:none">Отправить<span></span></button>

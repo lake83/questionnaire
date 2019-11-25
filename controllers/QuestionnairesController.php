@@ -37,15 +37,7 @@ class QuestionnairesController extends AdminController
         foreach (($questions = $model->questions) as $question) {
             $fields[] = 'field_' . $question['id'];
             
-            if ($question['type'] == Questions::TYPE_DATE) {
-                $fields[] = 'datetime_start_' . $question['id'];
-                $fields[] = 'datetime_end_' . $question['id'];
-            }
             if ($question['is_required']) {
-                if ($question['type'] == Questions::TYPE_DATE) {
-                    $fields_required[] = 'datetime_start_' . $question['id'];
-                    $fields_required[] = 'datetime_end_' . $question['id'];
-                }
                 $fields_required[] = 'field_' . $question['id'];
             } else {
                 $fields_safe[] = 'field_' . $question['id'];
@@ -57,7 +49,9 @@ class QuestionnairesController extends AdminController
             $arr = array_merge($arr, ['discount']);
         }
         $data = new DynamicModel(array_merge($fields, $arr));
-        $data->addRule(array_merge($fields_required, $arr), 'required');
+        $data->addRule(array_merge($fields_required, $arr), 'required')
+             ->addRule('name', 'match', ['pattern' => '/^(([a-z\(\)\s]+)|([а-яё\(\)\s]+))$/isu'])
+             ->addRule('phone', 'match', ['pattern' => '/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/']);
         
         if ($fields_safe) {
             $data->addRule($fields_safe, 'safe');
@@ -95,7 +89,7 @@ class QuestionnairesController extends AdminController
             }
             $result->questions = Json::encode($fields);
             
-            if ($result->save()) {
+            if ($result->save() && $result->sendEmail()) {
                 Yii::$app->response->data = $this->renderPartial('thanks');
             }
             Yii::$app->end();

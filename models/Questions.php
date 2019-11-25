@@ -12,6 +12,7 @@ use yii\helpers\Json;
  * @property int $questionnaire_id
  * @property string $name
  * @property int $type
+ * @property string $info
  * @property string $hint
  * @property string $image
  * @property string $slider
@@ -40,6 +41,10 @@ class Questions extends \yii\db\ActiveRecord
     
     public $image_form;
     
+    public $file_button;
+    
+    public $textarea_placeholder;
+    
     /**
      * {@inheritdoc}
      */
@@ -67,9 +72,10 @@ class Questions extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['questionnaire_id', 'name', 'type', 'hint'], 'required'],
+            [['questionnaire_id', 'name', 'type', 'info', 'hint'], 'required'],
             [['questionnaire_id', 'type', 'position', 'is_required', 'is_several', 'is_active', 'created_at', 'slider_min', 'slider_max', 'slider_step'], 'integer'],
             [['name', 'hint', 'image', 'slider'], 'string', 'max' => 255],
+            [['info', 'file_button', 'textarea_placeholder'], 'string', 'max' => 100],
             ['questionnaire_id', 'exist', 'skipOnError' => true, 'targetClass' => Questionnaires::className(), 'targetAttribute' => ['questionnaire_id' => 'id']],
             ['image', 'required', 'when' => function($model) {
                     return $model->type == self::TYPE_OPTIONS_AND_IMG;
@@ -89,6 +95,18 @@ class Questions extends \yii\db\ActiveRecord
                     return $('#questions-type').val() == " . self::TYPE_OPTIONS_IMGS . ";
                 }"
             ],
+            [['file_button'], 'required', 'when' => function($model) {
+                    return $model->type == self::TYPE_FILE;
+                }, 'whenClient' => "function (attribute, value) {
+                    return $('#questions-type').val() == " . self::TYPE_FILE . ";
+                }"
+            ],
+            [['textarea_placeholder'], 'required', 'when' => function($model) {
+                    return $model->type == self::TYPE_TEXTAREA;
+                }, 'whenClient' => "function (attribute, value) {
+                    return $('#questions-type').val() == " . self::TYPE_TEXTAREA . ";
+                }"
+            ],
             ['position', 'default', 'value' => 0],
             ['slider', 'default', 'value' => '']
         ];                        
@@ -104,12 +122,15 @@ class Questions extends \yii\db\ActiveRecord
             'questionnaire_id' => 'Опрос',
             'name' => 'Вопрос',
             'type' => 'Тип вопроса',
+            'info' => 'Информация',
             'hint' => 'Подсказка консультанта',
             'image' => 'Картинка',
             'image_form' => 'Формат изображения',
             'slider_min' => 'Ползунок минимум',
             'slider_max' => 'Ползунок максимум',
             'slider_step' => 'Ползунок шаг',
+            'file_button' => 'Текст кнопки',
+            'textarea_placeholder' => 'Текст плейсхолдера',
             'position' => 'Позиция',
             'is_required' => 'Обязательный вопрос',
             'is_several' => 'Можно несколько',
@@ -157,24 +178,6 @@ class Questions extends \yii\db\ActiveRecord
     }
     
     /**
-     * Returns a list of types info or name
-     * 
-     * @param integer $key key in an array of names
-     * @return mixed
-     */
-    public static function getTypesInfo($key = null)
-    {
-        $array = [
-            self::TYPE_TEXTAREA => 'Напишите свой вариант ответа',
-            self::TYPE_DROPDOWN => 'Выберите из списка',
-            self::TYPE_DATE => 'Выберите дату и время',
-            self::TYPE_SLIDER => 'Выберите значения',
-            self::TYPE_FILE => 'Загрузите файл в формате: JPG, PNG'
-        ];
-        return is_null($key) ? $array : $array[$key];
-    }
-    
-    /**
      * Returns a list of images form or name
      * 
      * @param integer $key key in an array of names
@@ -204,6 +207,14 @@ class Questions extends \yii\db\ActiveRecord
             $imgs = Json::decode($this->image);
             $this->image_form = (int)$imgs['form'];
         }
+        if ((int)$this->type == self::TYPE_FILE) {
+            $file_button = Json::decode($this->image);
+            $this->file_button = $file_button['btn_text'];
+        }
+        if ((int)$this->type == self::TYPE_TEXTAREA) {
+            $textarea_placeholder = Json::decode($this->image);
+            $this->textarea_placeholder = $textarea_placeholder['plc_text'];
+        }
         parent::afterFind();
     }
     
@@ -220,6 +231,16 @@ class Questions extends \yii\db\ActiveRecord
         if ((int)$this->type == self::TYPE_OPTIONS_IMGS) {
             $this->image = Json::encode(['form' => $this->image_form]);
         } elseif ((int)$this->type !== self::TYPE_OPTIONS_AND_IMG) {
+            $this->image = '';
+        }
+        if ((int)$this->type == self::TYPE_FILE) {
+            $this->image = Json::encode(['btn_text' => $this->file_button]);
+        } elseif ((int)$this->type !== self::TYPE_FILE) {
+            $this->image = '';
+        }
+        if ((int)$this->type == self::TYPE_TEXTAREA) {
+            $this->image = Json::encode(['plc_text' => $this->textarea_placeholder]);
+        } elseif ((int)$this->type !== self::TYPE_TEXTAREA) {
             $this->image = '';
         }
         return parent::beforeSave($insert);

@@ -14,7 +14,7 @@ use yii\base\InvalidParamException;
 
 class SiteController extends Controller
 {
-    public $layout = '@app/views/layouts/main-login';
+    public $layout = 'main-login';
     
     /**
      * {@inheritdoc}
@@ -124,5 +124,17 @@ class SiteController extends Controller
             return $this->redirect(['index']);
         }
         return $this->render('reset', ['model' => $model]);
+    }
+    
+    /**
+     * Page with conditions
+     *
+     * @return string
+     */
+    public function actionConditions()
+    {
+        $this->layout = 'front';
+        
+        return $this->render('conditions');
     }
 }

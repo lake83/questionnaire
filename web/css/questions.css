@@ -67,6 +67,9 @@
     color: #aaa;
     font-size: 14px;
 }
+.test_done a {
+    color: #aaa;
+}
 .main-col form input[type="text"], .main-col form textarea {
     padding: 22px;
     border-radius: 12px;
@@ -207,6 +210,12 @@ small {
 .type_options {
     padding: 10px;
 }
+.type_options_and_img_check .type_options .checkbox, .type_options_check .type_options .checkbox {
+    border: 1px solid #eceaea;
+    padding: 12px 0;
+    border-radius: 10px;
+    margin-bottom: -10px;
+}
 .type_options .checkbox .cr {
     width: 1.5em;
     height: 1.5em;
@@ -228,6 +237,7 @@ small {
     border-radius: 10px;
     width: 100%;
     float: right;
+    cursor: pointer;
 }
 .main-col .input-group-addon:first-child {
     border-radius: 10px 0 0 10px !important;
@@ -248,7 +258,7 @@ small {
     color: #dc2d3e !important;
 }
 .slider_field {
-    width: calc(100% - 20px);
+    margin-top: 15px;
 }
 .slider_field b {
     font-size: 20px;
@@ -273,6 +283,7 @@ small {
 .with_imgs {
     height: 220px;
     margin: 0 auto;
+    margin-top: 15px;    
 }
 .with_imgs .checkbox label {
     padding-left: 0;
@@ -282,6 +293,77 @@ small {
 }
 .with_imgs .type_options_and_img {
     float: none;
+}
+.slick-dots > li {
+    display: inline-block;
+}
+.slick-dots > li:only-child {
+    display: none;
+}
+.glyphicon.glyphicon-calendar {
+    color: #dc2d3e;
+    font-size: 20px;
+}
+.input-group-addon.kv-datetime-picker {
+    background-color: #fff;
+    border-radius: 0 12px 12px 0;
+    border-left: none;
+}
+.note {
+    background-color: #f1efef;
+    border-radius: 20px;
+    padding: 5px 15px;
+    width: max-content;
+    white-space: nowrap;
+}
+.note_check {
+    position: absolute;
+}
+.note_box {
+    margin: -7px 30px 15px -10px;
+    padding-left: 30px;
+    float: left;    
+}
+.note_required {
+    margin-top: -7px;
+    float: left;    
+}
+.min, .max {
+    padding: 10px 15px;
+    border: 1px solid #eceaea;
+    border-radius: 12px;
+}
+.form-control, .input-group-addon, .select2-container--bootstrap .select2-selection, .select2-container--bootstrap.input-lg .select2-selection--single {
+    border: 1px solid #eceaea;
+}
+.select2-container--bootstrap.input-lg .select2-selection--single .select2-selection__arrow {
+    top: 15px;
+    width: 18px !important;
+    height: 18px;
+    background-color: #dc2d3e;
+    border-radius: 4px;
+}
+.select2-container--bootstrap.input-lg .select2-selection--single .select2-selection__arrow b {
+    margin-left: 4px !important;
+    margin-top: -1.5px !important;
+    border-color: #fff transparent transparent transparent !important;
+}
+.select2-container--bootstrap.input-lg.select2-container--open .select2-selection--single .select2-selection__arrow b {
+    border-color: transparent transparent #fff transparent !important;
+}
+.select2-container--bootstrap.input-lg .select2-selection--single, .select2-dropdown {
+    border-radius: 12px !important;
+}
+.select2-container--bootstrap.select2-container--open.select2-container--above .select2-selection, .select2-container--open .select2-dropdown--below {
+    border-top-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+}
+.select2-container--bootstrap.select2-container--open.select2-container--below .select2-selection, .select2-container--open .select2-dropdown--above {
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+textarea::placeholder {
+    font-style: italic; 
 }
 .m_second-col {
     background-color: #f0f0f0;
@@ -330,6 +412,12 @@ small {
     .q_buttons {
         margin-top: 170px;
     }
+    #prev {
+        margin: 0;
+    }
+    #next {
+        float: right;
+    }  
 }
 @media screen and (max-width: 767px) and (orientation: landscape) {
     .file-preview .file-preview-frame {

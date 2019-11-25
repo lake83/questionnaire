@@ -8,7 +8,7 @@ use yii\helpers\ArrayHelper;
 /* @var boolean $is_column */
 ?>
 
-<div class="<?= $is_column ? 'col-md-11' : 'col-md-12' ?> col-xs-12">
+<div class="<?= $is_column ? 'col-md-11 col-sm-11' : 'col-md-12 col-sm-12' ?> col-xs-12 type_options_check">
     <?= $form->field($data, 'field_' . $question['id'])->checkboxList(ArrayHelper::map($question->options, 'id', 'name'), [
         'item' => function($index, $label, $name, $checked, $value) {
             return '<div class="type_options col-md-6 col-sm-6 col-xs-12">

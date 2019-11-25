@@ -19,12 +19,18 @@ $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
             ') {$(".options_image").show()} else {$(".options_image").hide();$("#questions-image").val("")}
             if (this.value == ' . $model::TYPE_OPTIONS_IMGS .
             ') {$(".images").show()} else {$(".images").hide();$("#questions-image_form").val("")}
+            if (this.value == ' . $model::TYPE_FILE .
+            ') {$(".files").show()} else {$(".files").hide();$("#questions-file_button").val("")}
+            if (this.value == ' . $model::TYPE_TEXTAREA .
+            ') {$(".texarea").show()} else {$(".texarea").hide();$("#questions-textarea_placeholder").val("")}
             if (this.value == ' . $model::TYPE_SLIDER .
             ') {$(".slider").show()} else {$(".slider").hide();$("#questions-slider_min, #questions-slider_max, #questions-slider_step").val("")}
             if (this.value == ' . $model::TYPE_OPTIONS . ' || this.value == ' . $model::TYPE_OPTIONS_IMGS .
             ' || this.value == ' . $model::TYPE_OPTIONS_AND_IMG .
             ') {$(".several").show()} else {$(".several").hide();$("#questions-is_several").val("0")}'
     ]) ?>
+    
+    <?= $form->field($model, 'info')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'hint')->textInput(['maxlength' => true]) ?>
 
@@ -34,6 +40,14 @@ $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
     
     <div class="images"<?= $model->isNewRecord || $model->type !== $model::TYPE_OPTIONS_IMGS ? ' style="display:none"' : '' ?>>
         <?= $form->field($model, 'image_form')->dropDownList($model->getImagesForm(), ['prompt' => '- выбрать -']) ?>
+    </div>
+    
+    <div class="files"<?= $model->isNewRecord || $model->type !== $model::TYPE_FILE ? ' style="display:none"' : '' ?>>
+        <?= $form->field($model, 'file_button')->textInput(['maxlength' => true]) ?>
+    </div>
+    
+    <div class="texarea"<?= $model->isNewRecord || $model->type !== $model::TYPE_TEXTAREA ? ' style="display:none"' : '' ?>>
+        <?= $form->field($model, 'textarea_placeholder')->textInput(['maxlength' => true]) ?>
     </div>
     
     <div class="slider"<?= $model->isNewRecord || $model->type !== $model::TYPE_SLIDER ? ' style="display:none"' : '' ?>>
