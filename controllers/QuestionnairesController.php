@@ -89,10 +89,9 @@ class QuestionnairesController extends AdminController
             }
             $result->questions = Json::encode($fields);
             
-            if ($result->save() && $result->sendEmail()) {
-                Yii::$app->response->data = $this->renderPartial('thanks');
+            if ($result->save()) {
+                return $this->renderPartial('thanks');
             }
-            Yii::$app->end();
         }
         return $this->renderAjax('view', ['model' => $model, 'questions' => $questions, 'data' => $data]);
     }

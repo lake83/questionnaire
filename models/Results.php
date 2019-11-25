@@ -121,15 +121,17 @@ class Results extends \yii\db\ActiveRecord
     }
     
     /**
-     * Send e-mail after save results
+     * @inheritdoc
      */
-    public function sendEmail()
+    public function afterSave($insert, $changedAttributes)
     {
-        return Yii::$app->mailer->compose(['html' => 'results-html'], ['data' => $this])
+        Yii::$app->mailer->compose(['html' => 'results-html'], ['data' => $this])
             ->setFrom(['info@' . Yii::$app->request->hostName => ($name = Yii::$app->name)])
             ->setTo(Yii::$app->params['adminEmail'])
-            ->setSubject('Новая заявка ot ' . $name . ' - ' . $this->questionnaire->title)
+            ->setSubject('Новая заявка от ' . $name . ' - ' . $this->questionnaire->title)
             ->send();
+        
+        return parent::afterSave($insert, $changedAttributes);
     }
     
     /**
