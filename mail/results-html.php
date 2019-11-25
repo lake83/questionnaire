@@ -40,7 +40,7 @@
                 <hr style="border:0;height:1px;background-color:#687aa1;margin:5px 0 35px 0;width:calc(100% - 50px);"/>
                 
                 <div style="margin-bottom:30px;">
-                    <span style="color:#4a5773;font:400 16px Arial;">Время заявки: <?= Yii::$app->formatter->asDateTime($data->created_at, 'php:d l Y, H:i') ?></span><br />
+                    <span style="color:#4a5773;font:400 16px Arial;">Время заявки: <?= Yii::$app->formatter->asDateTime($data->created_at, 'php:d F Y, H:i') ?></span><br />
                 </div>
                 <a href="<?= Yii::$app->urlManager->createAbsoluteUrl(['results/view', 'id' => $data->id]) ?>" style="color:#1c69ff;font:400 16px Arial;margin:30px 0;">Посмотреть в личном кабинете</a>
             </td>
