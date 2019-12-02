@@ -14,6 +14,7 @@
 .q_title {
     color: #dc2d3e;
     font-weight: bold;
+    font-size: 14px;
 }
 .q_title img {
     width: 25px;
@@ -23,14 +24,19 @@
 }
 .q_content {
     padding-top: 20px;
-    min-height: 425px;
+    min-height: 435px;
 }
 .q_content h3 {
     font-weight: bold;
+    font-size: 26.5px;
+    margin-top: 25px;
 }
 .q_info {
-    padding: 15px 0 20px 0;
+    padding: 10px 0 20px 0;
     font-size: 13px;
+}
+.q_info > div {
+    padding: 0 7px;
 }
 .q_buttons {
     position: relative;
@@ -38,8 +44,18 @@
     width: 100%;
     height: 0;
 }
+.q_buttons .progress_wrap {
+    width: 57%;
+    float: left;
+    margin-top: 10px;
+}
+.q_buttons .btn_wrap {
+    width: 43%;
+    float: left;
+    padding-left: 15px;
+}
 .q_buttons .progress {
-    height: 6px;
+    height: 7px;
     margin: 10px 0;
 }
 .q_buttons .progress-bar {
@@ -47,40 +63,61 @@
 }
 .person_img {
     display: block;
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
     float: left;
-    margin-right: 10px;
+    margin-right: 14px;
     border-radius: 15px;
 }
 .main-col {
-    height: 100%;
+    width: 78%;
+    float: left;
+    padding: 20px 20px 20px 30px;  
 }
 .main-col form label {
     color: #dc2d3e;
     font-weight: normal;
 }
 .main-col form .checkbox label {
-    color: #aaa;
+    color: #939596;
     font-size: 14px;
 }
 .test_done a {
-    color: #aaa;
+    color: #939596;
+}
+.test_done .checkbox {
+    margin-top: 0 !important;
+}
+.test_done .checkbox label {
+    padding-left: 10px;
+}
+.test_done .checkbox .cr {
+    margin-top: -20px;
+}
+#send {
+    display: none;
+    margin-left: 35px;
+    padding: 15px 60px 15px 25px;
 }
 .main-col form input[type="text"], .main-col form textarea {
     padding: 22px;
     border-radius: 12px;
     font-weight: bold;
+    font-weight: 400;
+}
+.main-col form textarea {
+    padding: 22px 30px;
+    font-size: 18px;
 }
 .main-col .btn-light {
     border-radius: 15px;
-    margin: 0 15px;
+    margin: 0 12px 0 15px;
     background-image: url('/images/angle.png');
     background-repeat: no-repeat;
-    background-size: 17%;
+    background-size: 13%;
     background-position: center;
     padding: 25px;
     -moz-transform: scaleX(-1);
@@ -93,7 +130,9 @@
 .main-col .btn-danger {
     background-color: #dc2c3e;
     border-radius: 15px;
-    padding: 15px 50px 15px 15px;
+    padding: 15px 55px 15px 20px;
+    font-size: 15px;
+    font-weight: bold;
 }
 .main-col .btn-danger span {
     display: inline-block;
@@ -101,61 +140,92 @@
     height: 20px;
     background-color: #fff;
     border-radius: 5px;
-    margin: 3px 0 0 15px;
+    margin: 0 0 0 20px;
     background-image: url('/images/angle.png');
     background-repeat: no-repeat;
-    background-size: 40%;
+    background-size: 31%;
     background-position: center;
     position: absolute;
 }
 .second-col {
-    padding-top: 20px;
+    width: calc(22% + 50px);
+    float: left;
+    padding: 33px 30px;
+    line-height: 30px;
+    font-size: 14.5px;
+    border-radius: 40px;
+    margin-left: -50px;
     height: 100%;
+    background-color: #f0f0f0;
 }
 small {
     color: #dc2d3e;
-    padding-top: 5px;
+    line-height: 10px;
     display: block;
+}
+.second-col small {
+    font-size: 12.5px;
+}
+.progress_wrap small {
+    font-size: 15px;
 }
 .second-col .clearfix {
     padding-bottom: 20px;
 }
 .second-col .description {
-    background-color: #f7f7f7;
+    background-color: #fff;
     width: 100%;
     display: block;
     border-radius: 15px;
     padding: 15px;
     font-size: 13px;
+    line-height: 20px;
+    box-shadow: 0 0 10px 0 #ddd;
+}
+.triangle {
+    width: 0;
+    height: 0;
+    border-bottom: 12px solid #fff;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    margin: -20px 0 15px 5px;
+    position: absolute;
+}
+.second-col .triangle {
+    margin: -27px 0 15px 5px;
 }
 .second-col .discount {
     background-color: #fbe408;
-    width: 100%;
-    height: 140px;
+    height: 150px;
     display: block;
     position: absolute;
-    bottom: 0;
+    bottom: 30px;
     border-radius: 15px;
-    padding: 15px;   
+    padding: 15px;
+    width: 190px;
 }
 .second-col .discount img {
-    margin-top: -50px;
+    margin: -50px 0 0 -10px;
+}
+.second-col .discount span {
+    white-space: nowrap;
+    font-size: 18px;
 }
 .second-col .discount .discount_info {
     position: relative;
     width: 20px;
     float: right;
-    top: 50px;
+    top: 55px;
+    left: -5px;
 }
 .second-col .discount strong {
     display: block;
     font-size: 24px;
 }
 .test_done span {
-    font-size: 24px;
-}
-.test_done h3 {
-    margin-top: 0;
+    font-size: 26px;
+    top: 20px;
+    position: relative;
 }
 
 .checkbox label:after {
@@ -166,12 +236,12 @@ small {
 .checkbox .cr {
   position: relative;
   display: inline-block;
-  border: 1px solid #ccc;
+  border: 1px solid #eae4e4;
   border-radius: .25em;
   width: .8em;
   height: .8em;
   float: left;
-  margin-right: .5em;
+  margin-right: .8em;
   background-color: #ddd;
 }
 .checkbox .cr .cr-icon {
@@ -197,22 +267,34 @@ small {
     margin: 0;
 }
 .q_info .checkbox .cr {
-    width: 1.2em;
-    height: 1.2em;
-    border-radius: .8em;
+    width: 1em;
+    height: 1em;
+    border-radius: .5em;
     background-color: #000;
     border: 1px solid #000;
 }
 .q_info .checkbox .cr .cr-icon {
-    font-size: .7em;
+    font-size: .55em;
     color: #fff;
 }
 .type_options {
     padding: 10px;
 }
+.with_imgs .type_options .checkbox {
+    margin-top: 15px;
+}
+.type_options_and_img_check {
+    margin-top: 10px;
+}
+.type_options_and_img_check .type_options .checkbox .cr {
+    margin-right: 1.3em;
+}
+.type_options_check {
+    margin: 10px 0 0 -10px;
+}
 .type_options_and_img_check .type_options .checkbox, .type_options_check .type_options .checkbox {
     border: 1px solid #eceaea;
-    padding: 12px 0;
+    padding: 14px 0;
     border-radius: 10px;
     margin-bottom: -10px;
 }
@@ -221,6 +303,9 @@ small {
     height: 1.5em;
     background-color: #fff;
     border-radius: .4em;
+}
+.type_options_check .checkbox .cr {
+    margin-right: 1.3em;
 }
 .type_options .checkbox label input[type="checkbox"]:checked+.cr {
     background-color: #dc2d3e;
@@ -233,8 +318,12 @@ small {
 .type_options .checkbox label {
     font-weight: bold;
 }
+.type_options_and_img_wrap {
+    margin: 30px 0 0 20px;
+    padding-right: 30px;
+}
 .type_options_and_img {
-    border-radius: 10px;
+    border-radius: 15px;
     width: 100%;
     float: right;
     cursor: pointer;
@@ -261,7 +350,7 @@ small {
     margin-top: 15px;
 }
 .slider_field b {
-    font-size: 20px;
+    font-size: 26px;
 }
 .slider.slider-horizontal {
     width: 100% !important;
@@ -292,6 +381,7 @@ small {
     text-align: center;
 }
 .with_imgs .type_options_and_img {
+    border-radius: 10px;
     float: none;
 }
 .slick-dots > li {
@@ -312,20 +402,21 @@ small {
 .note {
     background-color: #f1efef;
     border-radius: 20px;
-    padding: 5px 15px;
+    padding: 3px 10px;
     width: max-content;
     white-space: nowrap;
+    font-size: 12px;
 }
 .note_check {
     position: absolute;
 }
 .note_box {
-    margin: -7px 30px 15px -10px;
+    margin: -5px 10px 15px -7px;
     padding-left: 30px;
     float: left;    
 }
 .note_required {
-    margin-top: -7px;
+    margin-top: -5px;
     float: left;    
 }
 .min, .max {
@@ -333,18 +424,25 @@ small {
     border: 1px solid #eceaea;
     border-radius: 12px;
 }
-.form-control, .input-group-addon, .select2-container--bootstrap .select2-selection, .select2-container--bootstrap.input-lg .select2-selection--single {
+.form-control, .input-group-addon, .date .form-control:focus, .select2-container--bootstrap .select2-selection, .select2-container--bootstrap.input-lg .select2-selection--single, .select2-container--bootstrap .select2-dropdown {
     border: 1px solid #eceaea;
+}
+.form-control:focus, .select2-container--bootstrap.select2-container--focus .select2-selection, .select2-container--bootstrap.select2-container--open .select2-selection {
+    box-shadow: none !important;
 }
 .select2-container--bootstrap.input-lg .select2-selection--single .select2-selection__arrow {
     top: 15px;
-    width: 18px !important;
-    height: 18px;
+    right: 18px;
+    width: 22px !important;
+    height: 22px;
     background-color: #dc2d3e;
-    border-radius: 4px;
+    border-radius: 5px;
+}
+.select2-container--bootstrap .select2-selection__clear {
+    margin-right: 16px !important;
 }
 .select2-container--bootstrap.input-lg .select2-selection--single .select2-selection__arrow b {
-    margin-left: 4px !important;
+    margin-left: 6px !important;
     margin-top: -1.5px !important;
     border-color: #fff transparent transparent transparent !important;
 }
@@ -362,8 +460,42 @@ small {
     border-bottom-right-radius: 0 !important;
     border-bottom-left-radius: 0 !important;
 }
+.select2-container--bootstrap.input-lg .select2-selection--single {
+    font-family: 'Gilroy';
+}
+.select2-container--bootstrap.input-lg .select2-selection--single {
+    height: 50px !important;
+    padding: 12px 31px 12px 16px !important;
+}
 textarea::placeholder {
-    font-style: italic; 
+    font-style: italic;
+    font-size: 18px;
+    font-weight: 400;
+}
+.slick-slide {
+    margin-left: 20px;
+    border: 1px solid #eceaea;
+    border-radius: 10px;
+}
+.file_wrap {
+    margin-top: 15px;
+    height: 180px;
+    padding: 0;
+}
+.file_wrap .file-preview {
+    border: 0;
+}
+.file_wrap .file-drop-zone {
+    border: 2px dashed #d1d1d1;
+    border-radius: 15px;
+    margin: 0;
+}
+.file_wrap .krajee-default.file-preview-frame .kv-file-content {
+    width: 100%;
+}
+.textarea_wrap {
+    margin-top: 15px;
+    padding-left: 0;
 }
 .m_second-col {
     background-color: #f0f0f0;
@@ -384,8 +516,13 @@ textarea::placeholder {
     border-radius: 0 0 10px 10px;
     font-size: 12px;
 }
+.m_second-col .discount span {
+    font-size: 18px;
+    white-space: nowrap;
+}
 .m_second-col .discount strong {
     font-size: 16px;
+    white-space: nowrap;
 }
 .m_second-col .person_img {
     margin-left: 10px;
@@ -393,21 +530,14 @@ textarea::placeholder {
 .m_second-col .description {
     padding: 10px;
     font-size: 12px;
+    background-color: #fff;
+    margin: 15px 10px;
+    border-radius: 10px;
 }
 
 @media screen and (max-width: 320px) and (max-width: 1024px) {
     .file-preview .file-preview-frame {
         width: auto;
-    }
-    .with_imgs {
-        height: 250px;
-        margin: 0 auto;
-    }
-    .with_imgs .type_options_and_img {
-        width: 200px;
-        position: relative;
-        left: 50%;
-        margin-left: -100px;
     }
     .q_buttons {
         margin-top: 170px;
@@ -417,7 +547,30 @@ textarea::placeholder {
     }
     #next {
         float: right;
-    }  
+    }
+    .main-col {
+        width: 100%;
+    }
+    .q_buttons .progress_wrap {
+        width: 100%;
+    }
+    .q_buttons .btn_wrap {
+        width: 100%;
+    }
+    .main-col .btn-danger {
+        padding: 15px 50px 15px 10px;
+    }
+    .slick-slide {
+        margin-left: 0;
+        height: auto !important;
+    }
+    .type_options_and_img_wrap {
+        margin: 30px 0;
+        padding: 0;
+    }
+    .file_wrap {
+        height: auto;
+    }
 }
 @media screen and (max-width: 767px) and (orientation: landscape) {
     .file-preview .file-preview-frame {
@@ -426,13 +579,53 @@ textarea::placeholder {
     .with_imgs {
         height: 250px;
     }
-    .with_imgs .type_options_and_img {
-        width: 200px;
-        position: relative;
-        left: 50%;
-        margin-left: -100px;
-    }
     .q_buttons {
         margin-top: 170px;
+    }
+    .main-col {
+        width: 100%;
+    }
+    .q_buttons .progress_wrap {
+        width: 50%;
+    }
+    .q_buttons .btn_wrap {
+        width: 50%;
+    }
+    .slick-slide {
+        height: auto !important;
+    }
+    .type_options_and_img_wrap {
+        margin: 30px 0;
+    }
+    .file_wrap {
+        height: auto;
+    }
+}
+@media screen and (min-width: 400px) and (max-width: 575px) {
+    .main-col {
+        width: 100%;
+    }
+    .q_buttons .progress_wrap {
+        width: 50%;
+    }
+    .q_buttons .btn_wrap {
+        width: 50%;
+    }
+    .file_wrap {
+        display: contents;        
+    }
+}
+@media screen and (min-width: 320px) and (max-width: 399px) {
+    .main-col {
+        width: 100%;
+    }
+    .q_buttons .progress_wrap {
+        width: 50%;
+    }
+    .q_buttons .btn_wrap {
+        width: 50%;
+    }
+    .file_wrap {
+        display: contents;        
     }
 }

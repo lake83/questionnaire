@@ -8,8 +8,10 @@ use kartik\datetime\DateTimePicker;
 /* @var $form yii\bootstrap\ActiveForm */
 ?>
 
-<div class="row col-md-6 col-sm-6 col-xs-12" style="margin: 15px;">
-<?= $form->field($data, 'field_' . $question['id'])->widget(DateTimePicker::classname(), [
+<div class="row col-md-6 col-sm-6 col-xs-12">
+<?= $form->field($data, 'field_' . $question['id'], [
+        'labelOptions' => ['style' => 'margin: 20px 0 30px 20px;font-size:14px']
+    ])->widget(DateTimePicker::classname(), [
 	'type' => DateTimePicker::TYPE_COMPONENT_APPEND,
     'removeButton' => false,
     'options' => ['style' => 'border-right: none;'],
@@ -18,5 +20,5 @@ use kartik\datetime\DateTimePicker;
         'format' => 'd MM yyyy hh:ii',
         'pickerPosition' => 'bottom-left'
 	]
-])->label(false)->error(false) ?>
+])->label('Выберите дату')->error(false) ?>
 </div>

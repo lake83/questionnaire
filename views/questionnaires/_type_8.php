@@ -8,7 +8,7 @@ use kartik\file\FileInput;
 /* @var boolean $is_column */
 ?>
 
-<div class="<?= $is_column ? 'col-md-11 col-sm-11' : 'col-md-12 col-sm-12' ?> col-xs-12" style="margin-top: 15px;height: 180px;">
+<div class="file_wrap <?= $is_column ? 'col-md-11 col-sm-11' : 'col-md-12 col-sm-12' ?> col-xs-12">
 <?= $form->field($data, 'field_' . $question['id'] . '[]')->widget(FileInput::classname(), [
     'language' => 'ru',
     'options' => ['multiple' => true, 'accept' => 'image/*'],

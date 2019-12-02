@@ -14,7 +14,7 @@ use yii\helpers\Url;
 ?>
 
 <div class="main-wrapper">
-    <div class="main-col <?= $model->is_column ? 'col-md-10 col-sm-10' : 'col-md-12' ?> col-xs-12 no-padding">
+    <div class="main-col"<?= $model->is_column ? '' : ' style="width:100%"' ?>>
         <div class="q_title"><img src="/images/title.png" /><?= $model->title ?></div>
         
         <?php $form = ActiveForm::begin([
@@ -31,17 +31,17 @@ use yii\helpers\Url;
                 <?php $this->beginBlock('second-col', true); ?>
         
                     <div class="person_img" style="background-image: url('<?= SiteHelper::resized_image($model->person_image, 70, null) ?>');"></div>
-                    <?= $model->person_name ?>
+                    <strong><?= $model->person_name ?></strong>
                     <small><?= $model->person_post ?></small>
         
                     <div class="clearfix"></div>
-                    <div class="description"><?= isset($questions[0]) ? $questions[0]['hint'] : '' ?></div>
+                    <div class="description"><div class="triangle"></div><span><?= isset($questions[0]) ? $questions[0]['hint'] : '' ?></span></div>
         
                     <?php if ($model->is_discount): ?>
                     <div class="discount">
                         <img src="/images/wallet.png" />
                         <img class="discount_info" src="/images/info.png" title="<?= $model->discount_info ?>" />
-                        Ваша скидка
+                        <span>Ваша скидка</span>
                         <strong data-answers="0">0 <?= $model->discount_type == $model::DISCOUNT_PROCENT ? '%' : 'р.' ?></strong>
                     </div>
                     <?php endif ?>
@@ -78,7 +78,7 @@ use yii\helpers\Url;
                     <span>Отлично, вы завершили тест!</span>
                     <h3>Введите ваши контактные данные</h3>
                     
-                    <div class="row <?= $model->is_column ? 'col-md-11 col-sm-11' : 'col-md-12 col-sm-12' ?> col-xs-12" style="margin: 30px 0;">
+                    <div class="row <?= $model->is_column ? 'col-md-11 col-sm-11' : 'col-md-12 col-sm-12' ?> col-xs-12 no-padding" style="margin: 30px 0;">
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <?= $form->field($data, 'name')->textInput()->label('Ваше имя')->error(false) ?>
                         </div>
@@ -105,24 +105,24 @@ use yii\helpers\Url;
             <?php endif ?>
         </div>
         
-        <div class="row q_buttons">
-            <div class="col-md-9 col-sm-8 col-xs-12">
+        <div class="q_buttons">
+            <div class="progress_wrap">
                 <small>Готово на <span>0</span>%</small>
                 <div class="progress">
                     <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%"></div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-4 col-xs-12"<?= !$model->is_column ? ' style="text-align: right;"' : '' ?>>
+            <div class="btn_wrap"<?= !$model->is_column ? ' style="text-align: right;"' : '' ?>>
                 <button id="prev" type="button" class="btn btn-light btn-lg"></button>
                 <button id="next" type="button" class="btn btn-danger btn-lg">Далее<span></span></button>
-                <button id="send" type="submit" class="btn btn-danger btn-lg" style="display:none">Отправить<span></span></button>
+                <button id="send" type="submit" class="btn btn-danger btn-lg">Отправить<span></span></button>
             </div>
         </div>
         <?php ActiveForm::end(); ?>
     </div>
 
     <?php if ($model->is_column): ?>
-    <div class="second-col col-md-2 col-sm-2 hidden-xs no-padding">
+    <div class="second-col hidden-xs">
         
         <?= $this->blocks['second-col']; ?>
         

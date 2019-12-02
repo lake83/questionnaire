@@ -10,10 +10,10 @@ $formatter = Yii::$app->formatter;
 ?>
 
 <div class="<?= $is_column ? 'col-md-11 col-sm-11' : 'col-md-12 col-sm-12' ?> col-xs-12 slider_field">
-    <div class="col-md-6 col-sm-6">
+    <div class="col-md-6 col-sm-6 no-padding">
         <b class="pull-left min"><?= $formatter->asDecimal($question['slider_min']) ?></b>
     </div>
-    <div class="col-md-6 col-sm-6">
+    <div class="col-md-6 col-sm-6 no-padding">
         <b class="pull-right max"><?= $formatter->asDecimal($question['slider_max']) ?></b>
     </div>
         <?= $form->field($data, 'field_' . $question['id'])->widget(Slider::classname(), [

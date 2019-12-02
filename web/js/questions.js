@@ -16,7 +16,7 @@ $(document).on('click', '.q_buttons button[type="button"]', function(e){
     }
     $('.q_buttons small span').text(progress);
     $('.progress-bar').css('width', progress + '%').attr('aria-valuenow', progress);
-    $('.description').html(current.data('hint'));
+    $('.description span').html(current.data('hint'));
     
     var group = current.find('.form-group');
     

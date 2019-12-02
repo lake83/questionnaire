@@ -10,11 +10,12 @@ use app\components\SiteHelper;
 
 \app\assets\SlickAsset::register($this);
 
-$items = $is_column ? ($question['image_form'] == 1 ? 4 : 3) : ($question['image_form'] == 1 ? 5 : 4);
+$items = $is_column ? ($question['image_form'] == 1 ? 3 : 2) : ($question['image_form'] == 1 ? 4 : 3);
 
 $this->registerJs("$('#dynamicmodel-field_" . $question['id'] . "').slick({
   slidesToShow: " . $items . ",
   slidesToScroll: 1,
+  arrows: false,
   dots: true,
   responsive: [
     {
@@ -41,6 +42,13 @@ $this->registerJs("$('#dynamicmodel-field_" . $question['id'] . "').slick({
     {
       breakpoint: 575,
       settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1
+      }
+    },
+    {
+      breakpoint: 360,
+      settings: {
         slidesToShow: 1,
         slidesToScroll: 1
       }
@@ -49,7 +57,7 @@ $this->registerJs("$('#dynamicmodel-field_" . $question['id'] . "').slick({
 });");
 ?>
 
-<div class="row <?= $is_column ? 'col-md-11 col-sm-11' : 'col-md-12 col-sm-12' ?> col-xs-12 with_imgs">
+<div class="row <?= $is_column ? 'col-md-11 col-sm-11' : 'col-md-12 col-sm-12' ?> col-xs-12 with_imgs no-padding">
     <?= $form->field($data, 'field_' . $question['id'])->checkboxList(ArrayHelper::map(($options = $question->options), 'id', 'name'), [
         'item' => function($index, $label, $name, $checked, $value) use ($question, $options){
             return '<div class="type_options ' . ($question['image_form'] == 1 ? 'col-md-3 col-sm-3' : 'col-md-4 col-sm-4') . ' col-xs-12">
@@ -65,3 +73,4 @@ $this->registerJs("$('#dynamicmodel-field_" . $question['id'] . "').slick({
         },
     ])->label(false)->error(false) ?>
 </div>
+<div class="clearfix"></div>

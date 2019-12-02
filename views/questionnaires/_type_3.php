@@ -9,10 +9,10 @@ use app\components\SiteHelper;
 /* @var boolean $is_column */
 ?>
 
-<div class="<?= $is_column ? 'col-md-6 col-sm-6' : 'col-md-7 col-sm-7' ?> col-xs-12 type_options_and_img_check" style="margin-top: 15px;">
+<div class="<?= $is_column ? 'col-md-5 col-sm-5' : 'col-md-7 col-sm-7' ?> col-xs-12 type_options_and_img_check no-padding">
     <?= $form->field($data, 'field_' . $question['id'])->checkboxList(ArrayHelper::map($question->options, 'id', 'name'), [
         'item' => function($index, $label, $name, $checked, $value) {
-            return '<div class="type_options col-md-12">
+            return '<div class="type_options no-padding col-md-12">
                 <div class="checkbox">
                     <label>
                         <input type="checkbox" name="' . $name . '" value="' . $value . '">
@@ -23,6 +23,6 @@ use app\components\SiteHelper;
         }
     ])->label(false)->error(false) ?>
 </div>
-<div class="col-md-5 col-sm-5 col-xs-12" style="margin-top: 30px;">
+<div class="type_options_and_img_wrap col-md-6 col-sm-6 col-xs-12">
     <img class="type_options_and_img" src="<?= SiteHelper::resized_image($question['image'], 400, null) ?>" alt="<?= $question['name'] ?>" />
 </div>

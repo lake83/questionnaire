@@ -15,10 +15,8 @@
 .modalContent {
   background-color: #fff;
   margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 75%;
-  border-radius: 30px;
+  width: 69%;
+  border-radius: 40px;
 }
 .modalBody {
    width: 100%;
@@ -27,7 +25,7 @@
   color: #eee;
   float: right;
   font-size: 36px;
-  margin: -60px -50px 0 0;
+  margin: -40px -30px 0 0;
 }
 .closeModal:hover, .closeModal:focus {
   color: #aaa;
@@ -42,7 +40,8 @@
 }
 iframe {
     display:block;
-    height: 80vh;
+    height: 86vh;
     width: 100%;
     overflow: hidden;
+    border-radius: 40px;
 }
