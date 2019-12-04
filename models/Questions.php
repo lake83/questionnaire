@@ -41,7 +41,8 @@ class Questions extends \yii\db\ActiveRecord
     
     public $image_form;
     
-    public $file_button;
+    public $file_main_text;
+    public $file_help_text;
     
     public $textarea_placeholder;
     
@@ -75,7 +76,7 @@ class Questions extends \yii\db\ActiveRecord
             [['questionnaire_id', 'name', 'type', 'info', 'hint'], 'required'],
             [['questionnaire_id', 'type', 'position', 'is_required', 'is_several', 'is_active', 'created_at', 'slider_min', 'slider_max', 'slider_step'], 'integer'],
             [['name', 'hint', 'image', 'slider'], 'string', 'max' => 255],
-            [['info', 'file_button', 'textarea_placeholder'], 'string', 'max' => 100],
+            [['info', 'file_main_text', 'file_help_text', 'textarea_placeholder'], 'string', 'max' => 100],
             ['questionnaire_id', 'exist', 'skipOnError' => true, 'targetClass' => Questionnaires::className(), 'targetAttribute' => ['questionnaire_id' => 'id']],
             ['image', 'required', 'when' => function($model) {
                     return $model->type == self::TYPE_OPTIONS_AND_IMG;
@@ -95,7 +96,7 @@ class Questions extends \yii\db\ActiveRecord
                     return $('#questions-type').val() == " . self::TYPE_OPTIONS_IMGS . ";
                 }"
             ],
-            [['file_button'], 'required', 'when' => function($model) {
+            [['file_main_text', 'file_help_text'], 'required', 'when' => function($model) {
                     return $model->type == self::TYPE_FILE;
                 }, 'whenClient' => "function (attribute, value) {
                     return $('#questions-type').val() == " . self::TYPE_FILE . ";
@@ -129,7 +130,8 @@ class Questions extends \yii\db\ActiveRecord
             'slider_min' => 'Ползунок минимум',
             'slider_max' => 'Ползунок максимум',
             'slider_step' => 'Ползунок шаг',
-            'file_button' => 'Текст кнопки',
+            'file_main_text' => 'Текст поля загрузки',
+            'file_help_text' => 'Доп. текст поля загрузки',
             'textarea_placeholder' => 'Текст плейсхолдера',
             'position' => 'Позиция',
             'is_required' => 'Обязательный вопрос',
@@ -208,8 +210,9 @@ class Questions extends \yii\db\ActiveRecord
             $this->image_form = (int)$imgs['form'];
         }
         if ((int)$this->type == self::TYPE_FILE) {
-            $file_button = Json::decode($this->image);
-            $this->file_button = $file_button['btn_text'];
+            $file_text = Json::decode($this->image);
+            $this->file_main_text = $file_text['file_main_text'];
+            $this->file_help_text = $file_text['file_help_text'];
         }
         if ((int)$this->type == self::TYPE_TEXTAREA) {
             $textarea_placeholder = Json::decode($this->image);
@@ -232,7 +235,7 @@ class Questions extends \yii\db\ActiveRecord
             $this->image = Json::encode(['form' => $this->image_form]);
         }
         if ((int)$this->type == self::TYPE_FILE) {
-            $this->image = Json::encode(['btn_text' => $this->file_button]);
+            $this->image = Json::encode(['file_main_text' => $this->file_main_text, 'file_help_text' => $this->file_help_text]);
         }
         if ((int)$this->type == self::TYPE_TEXTAREA) {
             $this->image = Json::encode(['plc_text' => $this->textarea_placeholder]);

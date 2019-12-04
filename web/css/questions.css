@@ -297,6 +297,7 @@ small {
     padding: 14px 0;
     border-radius: 10px;
     margin-bottom: -10px;
+    cursor: pointer;
 }
 .type_options .checkbox .cr {
     width: 1.5em;
@@ -345,6 +346,16 @@ small {
 }
 .file-drop-zone-title {
     color: #dc2d3e !important;
+    padding: 40px 10px !important;    
+}
+
+.file-drop-zone-title img {
+    margin-bottom: 22px;
+}
+.file-drop-zone-title span {
+    color: #8f9091 !important;
+    font-size: 14.5px;
+    line-height: 40px;
 }
 .slider_field {
     margin-top: 15px;

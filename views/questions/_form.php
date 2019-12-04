@@ -20,7 +20,7 @@ $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
             if (this.value == ' . $model::TYPE_OPTIONS_IMGS .
             ') {$(".images").show()} else {$(".images").hide();$("#questions-image_form").val("")}
             if (this.value == ' . $model::TYPE_FILE .
-            ') {$(".files").show()} else {$(".files").hide();$("#questions-file_button").val("")}
+            ') {$(".files").show()} else {$(".files").hide();$("#questions-file_main_text, #questions-file_help_text").val("")}
             if (this.value == ' . $model::TYPE_TEXTAREA .
             ') {$(".texarea").show()} else {$(".texarea").hide();$("#questions-textarea_placeholder").val("")}
             if (this.value == ' . $model::TYPE_SLIDER .
@@ -43,7 +43,8 @@ $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
     </div>
     
     <div class="files"<?= $model->isNewRecord || $model->type !== $model::TYPE_FILE ? ' style="display:none"' : '' ?>>
-        <?= $form->field($model, 'file_button')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'file_main_text')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'file_help_text')->textInput(['maxlength' => true]) ?>
     </div>
     
     <div class="texarea"<?= $model->isNewRecord || $model->type !== $model::TYPE_TEXTAREA ? ' style="display:none"' : '' ?>>

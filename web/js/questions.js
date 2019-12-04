@@ -40,6 +40,10 @@ $(document).on('click', '.q_buttons button[type="button"]', function(e){
 $('.type_options_and_img').on('click', function() {
     $(this).parents('.slick-slide').find('input').trigger('click');
 });
+$('.type_options_and_img_check .type_options .checkbox, .type_options_check .type_options .checkbox').on('click', function() {
+    var checkBox = $(this).find('input');
+    checkBox.attr('checked', !checkBox.attr('checked')).change();
+});
 
 $('#dynamicmodel-conditions').click(function() {
     if ($(this).is(':checked')) {

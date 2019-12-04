@@ -18,12 +18,12 @@ use kartik\file\FileInput;
         'showCaption' => false,
         'showRemove' => false,
         'showUpload' => false,
-        'browseClass' => 'btn btn-block',
-        'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
-        'browseLabel' => $question['file_button'],
+        'showBrowse' => false,
         'maxFileSize' => 2000,
         'maxFileCount' => 3,
-        'showUpload' => false       
+        'browseOnZoneClick' => true,
+        'dropZoneTitle' => '<img src="/images/file_upload.png"><br />' . $question['file_main_text'] . '<br />',
+        'dropZoneClickTitle' => '<span>' . $question['file_help_text'] . '</span>'
     ]
 ])->label(false)->error(false) ?>
 </div>
