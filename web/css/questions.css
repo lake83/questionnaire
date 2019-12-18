@@ -385,6 +385,9 @@ small {
     margin: 0 auto;
     margin-top: 15px;    
 }
+.col-md-12.with_imgs{
+    height: 240px;
+}
 .with_imgs .checkbox label {
     padding-left: 0;
 }
