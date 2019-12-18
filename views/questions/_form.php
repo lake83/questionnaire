@@ -24,7 +24,7 @@ $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
             if (this.value == ' . $model::TYPE_TEXTAREA .
             ') {$(".texarea").show()} else {$(".texarea").hide();$("#questions-textarea_placeholder").val("")}
             if (this.value == ' . $model::TYPE_SLIDER .
-            ') {$(".slider").show()} else {$(".slider").hide();$("#questions-slider_min, #questions-slider_max, #questions-slider_step").val("")}
+            ') {$(".slider").show()} else {$(".slider").hide();$("#questions-slider_min, #questions-slider_max, #questions-slider_min_title, #questions-slider_max_title, #questions-slider_step, #questions-slider_mark").val("")}
             if (this.value == ' . $model::TYPE_OPTIONS . ' || this.value == ' . $model::TYPE_OPTIONS_IMGS .
             ' || this.value == ' . $model::TYPE_OPTIONS_AND_IMG .
             ') {$(".several").show()} else {$(".several").hide();$("#questions-is_several").val("0")}'
@@ -52,9 +52,12 @@ $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
     </div>
     
     <div class="slider"<?= $model->isNewRecord || $model->type !== $model::TYPE_SLIDER ? ' style="display:none"' : '' ?>>
+        <?= $form->field($model, 'slider_min_title')->textInput() ?>
         <?= $form->field($model, 'slider_min')->textInput() ?>
+        <?= $form->field($model, 'slider_max_title')->textInput() ?>
         <?= $form->field($model, 'slider_max')->textInput() ?>
         <?= $form->field($model, 'slider_step')->textInput() ?>
+        <?= $form->field($model, 'slider_mark')->textInput() ?>
     </div>
     
     <?= $form->field($model, 'position')->textInput() ?>

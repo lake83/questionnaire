@@ -63,9 +63,7 @@ $('[id^=dynamicmodel-field_]').on('keyup.yii, change.yii', function(){
         if ($this.val() != '' || $this.find('input:checked').length) {
             $('#next').removeAttr('disabled');
         } else {
-            if (!$this.hasClass('date')) {
-                $('#next').attr('disabled', 'disabled');
-            }
+            $('#next').attr('disabled', 'disabled');
         }
     }
 });
@@ -74,10 +72,10 @@ $('.slider_field input').on('slideStop', function(slideEvt) {
 	var slider = $(this).parents('.slider_field');
     
     if (!isNaN(slideEvt.value[0])) {
-        slider.find('.min').text(formatSlider(slideEvt.value[0]));
+        slider.find('.min strong').text(formatSlider(slideEvt.value[0]));
     }        
     if (!isNaN(slideEvt.value[1])) {
-        slider.find('.max').text(formatSlider(slideEvt.value[1]));
+        slider.find('.max strong').text(formatSlider(slideEvt.value[1]));
     }
 });
 
@@ -88,3 +86,12 @@ function formatSlider(val)
     }
     return val;
 }
+
+$('#date-field, #time-field').on('change', function() {
+    var date = $('#date-field').val(), time = $('#time-field').val();
+    if (date != '' && time != '') {
+        $('#dynamicmodel-field_1').val(date + ' ' + time).change();
+    } else {
+        $('#next').attr('disabled', 'disabled');
+    }
+});

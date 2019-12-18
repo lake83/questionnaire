@@ -37,7 +37,10 @@ class Questions extends \yii\db\ActiveRecord
     
     public $slider_min;
     public $slider_max;
+    public $slider_min_title;
+    public $slider_max_title;
     public $slider_step;
+    public $slider_mark;
     
     public $image_form;
     
@@ -75,8 +78,8 @@ class Questions extends \yii\db\ActiveRecord
         return [
             [['questionnaire_id', 'name', 'type', 'info', 'hint'], 'required'],
             [['questionnaire_id', 'type', 'position', 'is_required', 'is_several', 'is_active', 'created_at', 'slider_min', 'slider_max', 'slider_step'], 'integer'],
-            [['name', 'hint', 'image', 'slider'], 'string', 'max' => 255],
-            [['info', 'file_main_text', 'file_help_text', 'textarea_placeholder'], 'string', 'max' => 100],
+            [['name', 'hint', 'image', 'slider', 'slider_mark'], 'string', 'max' => 255],
+            [['info', 'file_main_text', 'file_help_text', 'textarea_placeholder', 'slider_min_title', 'slider_max_title'], 'string', 'max' => 100],
             ['questionnaire_id', 'exist', 'skipOnError' => true, 'targetClass' => Questionnaires::className(), 'targetAttribute' => ['questionnaire_id' => 'id']],
             ['image', 'required', 'when' => function($model) {
                     return $model->type == self::TYPE_OPTIONS_AND_IMG;
@@ -84,7 +87,7 @@ class Questions extends \yii\db\ActiveRecord
                     return $('#questions-type').val() == " . self::TYPE_OPTIONS_AND_IMG . ";
                 }"
             ],
-            [['slider_min', 'slider_max', 'slider_step'], 'required', 'when' => function($model) {
+            [['slider_min', 'slider_max', 'slider_step', 'slider_min_title', 'slider_max_title'], 'required', 'when' => function($model) {
                     return $model->type == self::TYPE_SLIDER;
                 }, 'whenClient' => "function (attribute, value) {
                     return $('#questions-type').val() == " . self::TYPE_SLIDER . ";
@@ -129,7 +132,10 @@ class Questions extends \yii\db\ActiveRecord
             'image_form' => 'Формат изображения',
             'slider_min' => 'Ползунок минимум',
             'slider_max' => 'Ползунок максимум',
+            'slider_min_title' => 'Заголовок минимум',
+            'slider_max_title' => 'Заголовок максимум',
             'slider_step' => 'Ползунок шаг',
+            'slider_mark' => 'Ползунок символ',
             'file_main_text' => 'Текст поля загрузки',
             'file_help_text' => 'Доп. текст поля загрузки',
             'textarea_placeholder' => 'Текст плейсхолдера',
@@ -203,7 +209,10 @@ class Questions extends \yii\db\ActiveRecord
             $slider = Json::decode($this->slider);
             $this->slider_min = (int)$slider['min'];
             $this->slider_max = (int)$slider['max'];
+            $this->slider_min_title = $slider['min_title'];
+            $this->slider_max_title = $slider['max_title'];
             $this->slider_step = (int)$slider['step'];
+            $this->slider_mark = $slider['mark'];
         }
         if ((int)$this->type == self::TYPE_OPTIONS_IMGS) {
             $imgs = Json::decode($this->image);
@@ -227,7 +236,14 @@ class Questions extends \yii\db\ActiveRecord
     public function beforeSave($insert)
     {
         if ((int)$this->type == self::TYPE_SLIDER) {
-            $this->slider = Json::encode(['min' => $this->slider_min, 'max' => $this->slider_max, 'step' => $this->slider_step]);
+            $this->slider = Json::encode([
+                'min' => $this->slider_min,
+                'max' => $this->slider_max,
+                'min_title' => $this->slider_min_title,
+                'max_title' => $this->slider_max_title,
+                'step' => $this->slider_step,
+                'mark' => $this->slider_mark
+            ]);
         } else {
             $this->slider = '';
         }
