@@ -20,7 +20,6 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "kartik-v/yii2-grid": "^3.1",
         "yiisoft/yii2-jui": "^2.0",
-        "dmstr/yii2-adminlte-asset": "^2.3",
         "kartik-v/yii2-widget-alert": "*",
         "kartik-v/yii2-widget-growl": "*",
         "xvs32x/tinymce-responsivefilemanager": "^1.0",
@@ -30,7 +29,8 @@
         "kartik-v/yii2-widget-fileinput": "dev-master",
         "kartik-v/yii2-slider": "dev-master",
         "kartik-v/yii2-widget-datepicker": "@dev",
-        "kartik-v/yii2-widget-timepicker": "*"
+        "kartik-v/yii2-widget-timepicker": "*",
+        "rmrevin/yii2-fontawesome": "^3.4"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

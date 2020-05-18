@@ -90,7 +90,8 @@ $config = [
                 ],
                 'app\assets\AdminAsset' => [
                     'js' => [
-                        YII_DEBUG ? 'js/admin.js' : 'js/admin.min.js'
+                        YII_DEBUG ? 'js/admin.js' : 'js/admin.min.js',
+                        YII_DEBUG ? 'js/adminlte.js' : 'js/adminlte.min.js'
                     ]
                 ]
             ]

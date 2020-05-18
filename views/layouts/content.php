@@ -1,6 +1,4 @@
 <?php
-use yii\widgets\Breadcrumbs;
-use dmstr\widgets\Alert;
 use yii\bootstrap\Modal;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -29,7 +27,6 @@ Modal::end();
     </section>
 
     <section class="content box box-success">
-        <?= Alert::widget() ?>
         <?= $content ?>
     </section>
 </div>

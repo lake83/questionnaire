@@ -7,7 +7,7 @@ app\assets\AdminAsset::register($this);
 ?>
 <aside class="main-sidebar">
     <section class="sidebar">
-<?= dmstr\widgets\Menu::widget([
+<?= app\widgets\Menu::widget([
     'options' => ['class' => 'sidebar-menu', 'data-widget' => 'tree'],
     'encodeLabels' => false,
     'items' => [

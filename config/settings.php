@@ -20,7 +20,7 @@ class settings implements BootstrapInterface
         
         if (!$app instanceof \yii\console\Application) {
             // Установка темы в админке
-            Yii::$container->set('dmstr\web\AdminLteAsset', ['skin' => $app->params['skin']]);
+            Yii::$container->set('app\assets\AdminAsset', ['skin' => $app->params['skin']]);
         }
     }
 }

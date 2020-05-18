@@ -1,12 +1,12 @@
 <?php
 
 use yii\helpers\Html;
-use dmstr\widgets\Alert;
+use app\widgets\Alert;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-dmstr\web\AdminLteAsset::register($this);
+app\assets\AdminAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

@@ -7,7 +7,6 @@ use kartik\dialog\Dialog;
 /* @var $content string */
 
 app\assets\AdminAsset::register($this);
-dmstr\web\AdminLteAsset::register($this);
 
 echo Dialog::widget([
    'libName' => 'krajeeDialog',
@@ -28,21 +27,21 @@ $this->beginPage() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
     </head>
-    <body class="<?= \dmstr\helpers\AdminLteHelper::skinClass() ?>">
+    <body class="<?= Yii::$app->assetManager->getBundle('app\assets\AdminAsset')->skin ?>">
     <?php $this->beginBody() ?>
     <div class="wrapper">
 
         <?php 
         if (Yii::$app->errorHandler->exception == null) {
-            echo $this->render('header.php');
-            echo $this->render('left.php');
+            echo $this->render('header');
+            echo $this->render('left');
         } 
         echo AlertBlock::widget([
             'useSessionFlash' => true,
             'type' => AlertBlock::TYPE_GROWL
         ]);
         
-        echo $this->render('content.php', ['content' => $content]);
+        echo $this->render('content', ['content' => $content]);
         ?>
     </div>
 
