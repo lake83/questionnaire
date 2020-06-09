@@ -21,7 +21,7 @@ class m170301_124905_settings extends Migration
                 'name' => 'adminEmail',
                 'value' => 'admin@example.com',
                 'label' => 'E-mail администратора',
-                'icon' => 'fa-envelope-o',
+                'icon' => 'fa-envelope',
                 'rules' => 'email',
                 'hint' => 'Используется для связи с администратором сайта.'
             ],
@@ -29,7 +29,7 @@ class m170301_124905_settings extends Migration
                 'name' => 'user.passwordResetTokenExpire',
                 'value' => '86400',
                 'label' => 'Время на восстановление пароля (сек.)',
-                'icon' => 'fa-clock-o',
+                'icon' => 'fa-clock',
                 'rules' => 'integer',
                 'hint' => 'По истечении указанного срока запрос на смену пароля становится не действительным.'
             ],

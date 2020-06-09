@@ -15,6 +15,7 @@ $app = Yii::$app;
     <nav class="navbar navbar-static-top" role="navigation">
 
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <i class="fa fa-bars"></i>
             <span class="sr-only">Toggle navigation</span>
         </a>
 
@@ -48,7 +49,7 @@ $app = Yii::$app;
                 
                 <!-- User Account: style can be found in dropdown.less -->
                 <li>
-                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-cogs"></i></a>
                 </li>
             </ul>
         </div>
